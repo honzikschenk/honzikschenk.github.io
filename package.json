@@ -1,9 +1,9 @@
 {
+  "homepage": "https://honzikschenk.github.io/personal-site",
   "name": "starter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://honzikschenk.github.io/personal-site",
   "scripts": {
     "dev": "vite",
     "build": "tsc ; vite build",
