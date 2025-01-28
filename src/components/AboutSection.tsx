@@ -15,7 +15,7 @@ interface AboutSectionProps {
 }
 
 const AboutSection = ({
-  bio = "I'm a passionate software engineer specializing in autonomous systems and modern web technologies. With experience in robotics, AI, and full-stack development, I create innovative solutions that bridge the gap between hardware and software.",
+  bio = "I'm Honzík, a first-year software engineering student at the University of Waterloo interested in integrated software engineering for robotics and space applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. I love backpacking, mountain biking, and rock climbing in my free time.",
   skills = [
     { name: "React/Next.js", level: 90, color: "bg-blue-500" },
     { name: "TypeScript", level: 85, color: "bg-blue-600" },
@@ -27,10 +27,10 @@ const AboutSection = ({
 }: AboutSectionProps) => {
   return (
     <motion.section
-      className="w-full min-h-screen bg-background py-20 px-4 md:px-8 lg:px-16 flex items-center"
-      initial={false}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
+      className="w-full min-h-screen py-20 px-4 md:px-8 lg:px-16 flex items-center"
+      initial={ { opacity: 0 } }
+      animate={ { opacity: 1 } }
+      whileInView={{ opacity: 0.99 }}
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto w-full">

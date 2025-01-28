@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, MotionValue } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
 import { ArrowDown, Cpu, Zap } from "lucide-react";
 
@@ -14,14 +14,18 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({
-  title = "Building the Future with Code",
-  subtitle = "Full-stack developer specializing in autonomous systems and modern web technologies",
+  title = "Jan \"Honzik\" Schenk",
+  subtitle = "Software Engineering student at the University of Waterloo",
   onExploreClick = () => console.log("Explore clicked"),
   roboticCoreScale,
   roboticCoreX,
   roboticCoreOpacity,
   contentOpacity,
 }: HeroSectionProps) => {
+  const { scrollY } = useScroll();
+  const scale = useTransform(scrollY, [0, 300], [1, 1.5]);
+  const y = useTransform(scrollY, [0, 300], [0, -100]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -50,8 +54,9 @@ const HeroSection = ({
             },
           }}
           style={{
-            scale: roboticCoreScale,
+            scale: roboticCoreScale || scale,
             x: roboticCoreX,
+            y: y,
             opacity: roboticCoreOpacity,
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
@@ -138,7 +143,7 @@ const HeroSection = ({
             size="lg"
             className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white"
           >
-            Explore My Work
+            Explore About Me
             <ArrowDown className="ml-2 h-4 w-4" />
           </Button>
         </motion.div>
@@ -161,7 +166,9 @@ const HeroSection = ({
             ease: "easeInOut",
           }}
         >
-          <ArrowDown className="h-6 w-6 text-muted-foreground" />
+            <Button onClick={onExploreClick} className="bg-background shadow-none hover:bg-background">
+              <ArrowDown className="h-6 w-6 text-muted-foreground" />
+            </Button>
         </motion.div>
       </motion.div>
     </motion.section>

@@ -5,11 +5,13 @@ import ProjectsGrid from "./ProjectsGrid";
 import ScrollNav from "./ScrollNav";
 import BackgroundEffects from "./BackgroundEffects";
 import AboutSection from "./AboutSection";
+import Footnote from "./Footnote";
 
 const sections = [
   { id: "hero", label: "Home", color: "bg-blue-500" },
   { id: "about", label: "About", color: "bg-purple-500" },
   { id: "projects", label: "Projects", color: "bg-green-500" },
+  { id: "footnote", label: "Connections", color: "bg-orange-500" },
 ];
 
 const HomePage = () => {
@@ -88,6 +90,10 @@ const HomePage = () => {
 
         <section id="projects" className="snap-start min-h-screen">
           <ProjectsGrid />
+        </section>
+
+        <section id="contact" className="snap-start min-h-screen">
+          <Footnote />
         </section>
       </div>
     </div>
