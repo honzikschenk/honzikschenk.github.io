@@ -18,47 +18,64 @@ interface ProjectsGridProps {
 const ProjectsGrid = ({
   projects = [
     {
-      title: "Autonomous Drone Platform",
+      title: "Campus Navigation Vehicle",
       description:
-        "A cutting-edge drone control system with AI-powered navigation and real-time obstacle avoidance.",
+        "Autonomous campus navigator that leads users to their classes using Robot OS and Raspberry Pi.",
       image:
-        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg",
       techStack: [
-        { name: "Python", color: "bg-blue-600" },
-        { name: "TensorFlow", color: "bg-orange-500" },
-        { name: "ROS", color: "bg-green-600" },
+        { name: "Robot OS", color: "bg-blue-600" },
+        { name: "Raspberry Pi", color: "bg-red-500" },
+        { name: "C++", color: "bg-purple-500" },
+        { name: "React Native", color: "bg-green-500" },
+        { name: "Bluetooth", color: "bg-blue-500" },
       ],
-      demoLink: "https://demo.example.com/drone",
-      githubLink: "https://github.com/example/drone-platform",
+      demoLink: "https://demo.example.com/campus",
+      githubLink: "",
     },
     {
-      title: "Smart City Monitor",
+      title: "GiveGain",
       description:
-        "IoT-based urban monitoring system for tracking environmental metrics and city infrastructure status.",
+        "Social-media-style app connecting volunteers with organizations using Next.js and PostgreSQL.",
       image:
-        "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg",
       techStack: [
-        { name: "React", color: "bg-blue-500" },
-        { name: "Node.js", color: "bg-green-500" },
-        { name: "MongoDB", color: "bg-green-600" },
+        { name: "Next.js", color: "bg-blue-600" },
+        { name: "PostgreSQL", color: "bg-blue-700" },
+        { name: "Prisma", color: "bg-green-500" },
+        { name: "JavaScript/Typescript", color: "bg-yellow-500" },
       ],
-      demoLink: "https://demo.example.com/smart-city",
-      githubLink: "https://github.com/example/smart-city",
+      demoLink: "https://demo.example.com/givegain",
+      githubLink: "",
     },
     {
-      title: "Robotics Control Interface",
+      title: "Omnidirectional Smart Car",
       description:
-        "Web-based control interface for industrial robotics with real-time monitoring and gesture control.",
+        "Omnidirectional smart car controlled via web interface using ESP32 and Arduino.",
       image:
-        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg",
       techStack: [
-        { name: "TypeScript", color: "bg-blue-600" },
-        { name: "WebSocket", color: "bg-purple-500" },
-        { name: "Three.js", color: "bg-red-500" },
+        { name: "ESP32", color: "bg-blue-600" },
+        { name: "Arduino", color: "bg-red-500" },
+        { name: "HTTP", color: "bg-purple-500" },
+        { name: "HTTPS", color: "bg-green-500" },
       ],
-      demoLink: "https://demo.example.com/robotics",
-      githubLink: "https://github.com/example/robotics-interface",
-    },
+      demoLink: "https://demo.example.com/smart-car",
+      githubLink: "",
+    }
+
+    // Campus Navigation Vehicle | Robot OS, Raspberry Pi, C/C++, React Native, Expo, Bluetooth
+    // • Team developed a campus navigator that could autonomously lead a user to their classes
+    // • Prototype used a Raspberry Pi with Robot OS and localized using AprilTags
+    // • Took the user′s schedule via an Expo/React Native app and uploaded it to the vehicle using Bluetooth
+    // • Detected obstacles in its path using an ultrasonic sensor and stopped to prevent collisions
+    // GiveGain (Fullstack Website) | Next.js, PostgreSQL, Prisma, Javascript/Typescript
+    // • Prototype social-media-style app that would serve as a way to connect volunteers with organizations
+    // • Utilized Next.js, PostgreSQL, and Prisma to achieve a streamlined full-stack experience
+    // Omnidirectional Smart Car for Microbots Hackathon | ESP32, EspNow (HTTP), Arduino, HTTPS
+    // • Omnidirectional smart car that could be controlled using a web interface served by an HTTP request (EspNow)
+    // • Car ran on an ESP32 chip and displayed emotions on an OLED screen
+    // • Emotions shaped by user’s actions, such as shaking the car or putting it upside down
   ],
 }: ProjectsGridProps) => {
   return (

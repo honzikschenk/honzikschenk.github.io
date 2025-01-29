@@ -11,25 +11,88 @@ interface Skill {
 
 interface AboutSectionProps {
   bio?: string;
-  skills?: Skill[];
+  skills?: {
+    languages: Skill[];
+    frameworks: Skill[];
+    tools: Skill[];
+    engineering: Skill[];
+    softSkills: Skill[];
+  };
 }
 
 const AboutSection = ({
   bio = "I'm Honzík, a first-year software engineering student at the University of Waterloo interested in integrated software engineering for robotics and space applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. I love backpacking, mountain biking, and rock climbing in my free time.",
-  skills = [
-    { name: "React/Next.js", level: 90, color: "bg-blue-500" },
-    { name: "TypeScript", level: 85, color: "bg-blue-600" },
-    { name: "Python", level: 88, color: "bg-yellow-500" },
-    { name: "ROS", level: 82, color: "bg-green-500" },
-    { name: "TensorFlow", level: 78, color: "bg-orange-500" },
-    { name: "Docker", level: 85, color: "bg-blue-400" },
-  ],
+  skills = {
+    // { name: "C++", level: 90, color: "bg-blue-500" },
+    // { name: "Java", level: 85, color: "bg-orange-500" },
+    // { name: "Python", level: 80, color: "bg-green-500" },
+    // { name: "JavaScript/Typescript", level: 75, color: "bg-purple-500" },
+    // { name: "React.js", level: 70, color: "bg-blue-600" },
+    // { name: "Node.js", level: 65, color: "bg-green-600" },
+    // { name: "MongoDB", level: 60, color: "bg-green-700" },
+    // { name: "PostgreSQL", level: 55, color: "bg-blue-700" },
+    // { name: "Robot OS 2", level: 50, color: "bg-purple-600" },
+    // { name: "Gradle/Maven", level: 45, color: "bg-orange-600" },
+    // { name: "HTML/CSS", level: 40, color: "bg-green-700" },
+    // { name: "Docker", level: 35, color: "bg-blue-700" },
+    // { name: "VS Code", level: 30, color: "bg-purple-700" },
+    // { name: "Git/GitHub Actions", level: 25, color: "bg-orange-700" },
+    // { name: "IntelliJ", level: 20, color: "bg-green-800" },
+    // { name: "GIS", level: 15, color: "bg-blue-800" },
+    // { name: "Continuous Integration", level: 10, color: "bg-purple-800" },
+
+    languages: [
+      { name: "C++", level: 90, color: "bg-blue-500" },
+      { name: "Java", level: 85, color: "bg-orange-500" },
+      { name: "Python", level: 80, color: "bg-green-500" },
+      { name: "Java(Type)Script", level: 75, color: "bg-purple-500" },
+      { name: "HTML/CSS", level: 40, color: "bg-green-700" },
+    ],
+    frameworks: [
+      { name: "React.js", level: 70, color: "bg-blue-600" },
+      { name: "Node.js", level: 65, color: "bg-green-600" },
+      { name: "MongoDB", level: 60, color: "bg-green-700" },
+      { name: "PostgreSQL", level: 55, color: "bg-blue-700" },
+      { name: "Robot OS 2", level: 50, color: "bg-purple-600" },
+      { name: "Gradle/Maven", level: 45, color: "bg-orange-600" },
+    ],
+    tools: [
+      { name: "Docker", level: 35, color: "bg-blue-700" },
+      { name: "VS Code", level: 30, color: "bg-purple-700" },
+      { name: "Git/GitHub Actions", level: 25, color: "bg-orange-700" },
+      { name: "IntelliJ", level: 20, color: "bg-green-800" },
+      { name: "GIS", level: 15, color: "bg-blue-800" },
+      { name: "Continuous Integration", level: 10, color: "bg-purple-800" },
+    ],
+    engineering: [
+      { name: "Boolean algebra", level: 70, color: "bg-blue-500" },
+      { name: "Schematic Design", level: 65, color: "bg-green-500" },
+      { name: "Soldering", level: 60, color: "bg-orange-500" },
+      { name: "Electrical Wiring", level: 55, color: "bg-purple-500" },
+      { name: "Lab Equipment", level: 50, color: "bg-blue-600" },
+    ],
+    softSkills: [
+      { name: "Leadership and Mentorship", level: 100, color: "bg-green-600" },
+      {
+        name: "Presentation and Communication",
+        level: 100,
+        color: "bg-orange-600",
+      },
+      { name: "Grant Writing", level: 100, color: "bg-purple-600" },
+    ],
+
+    // Languages: Object Oriented Programming (C++, Java, Python, Typescript), JavaScript, C, SQL, HTML/CSS
+    // Frameworks and Databases: React.js, React Native, Node.js, Next.js, Expo, Robot OS 2, Gradle, Maven, MongoDB, PostgreSQL
+    // Developer Tools: Git, GitHub Actions, Docker, VS Code, Visual Studio, IntelliJ, GIS, Continuous Integration
+    // Engineering Skills: Boolean algebra, Schematic Design, Soldering, Electrical Wiring, Lab Equipment
+    // Soft Skills: Leadership and Mentorship, Presentation and Communication, Grant Writing
+  },
 }: AboutSectionProps) => {
   return (
     <motion.section
       className="w-full min-h-screen py-20 px-4 md:px-8 lg:px-16 flex items-center"
-      initial={ { opacity: 0 } }
-      animate={ { opacity: 1 } }
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       whileInView={{ opacity: 0.99 }}
       transition={{ duration: 0.5 }}
     >
@@ -69,29 +132,18 @@ const AboutSection = ({
               <h3 className="text-2xl font-semibold mb-6">
                 Skills & Expertise
               </h3>
-              <div className="space-y-6">
-                {skills.map((skill, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <Badge
-                        variant="secondary"
-                        className={`${skill.color} text-white`}
-                      >
-                        {skill.level}%
-                      </Badge>
-                    </div>
-                    <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        className={`h-full ${skill.color}`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                      />
-                    </div>
-                  </div>
-                ))}
+              <div className="space-y-2">
+                <SkillSection title="Languages" skills={skills.languages} />
+                <SkillSection
+                  title="Frameworks and Databases"
+                  skills={skills.frameworks}
+                />
+                <SkillSection title="Developer Tools" skills={skills.tools} />
+                <SkillSection
+                  title="Engineering Skills"
+                  skills={skills.engineering}
+                />
+                <SkillSection title="Soft Skills" skills={skills.softSkills} />
               </div>
             </Card>
           </motion.div>
@@ -100,5 +152,25 @@ const AboutSection = ({
     </motion.section>
   );
 };
+
+const SkillSection = ({
+  title,
+  skills,
+}: {
+  title: string;
+  skills: Skill[];
+}) => (
+  <div>
+    <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {skills.map((skill) => (
+        <div key={skill.name} className="flex items-center">
+          <div className={`w-4 h-4 rounded-full ${skill.color} mr-2`}></div>
+          <span className="text-lg">{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 export default AboutSection;

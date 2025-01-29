@@ -11,7 +11,7 @@ const sections = [
   { id: "hero", label: "Home", color: "bg-blue-500" },
   { id: "about", label: "About", color: "bg-purple-500" },
   { id: "projects", label: "Projects", color: "bg-green-500" },
-  { id: "footnote", label: "Connections", color: "bg-orange-500" },
+  { id: "contact", label: "Connections", color: "bg-orange-500" },
 ];
 
 const HomePage = () => {

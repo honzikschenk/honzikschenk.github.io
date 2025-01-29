@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
 import { ArrowDown, Cpu, Zap } from "lucide-react";
@@ -26,6 +26,13 @@ const HeroSection = ({
   const scale = useTransform(scrollY, [0, 300], [1, 1.5]);
   const y = useTransform(scrollY, [0, 300], [0, -100]);
 
+  useEffect(() => {
+    const unsubscribe = scrollY.on("change", (latest) => {
+      console.log("scrollY:", latest);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -34,6 +41,7 @@ const HeroSection = ({
       className="relative h-screen w-full bg-background overflow-hidden flex items-center justify-center"
     >
       {/* Robotic Elements */}
+      <motion.div>
       <div className="absolute inset-0 pointer-events-none">
         {/* Central Core */}
         <motion.div
@@ -43,7 +51,7 @@ const HeroSection = ({
           }}
           transition={{
             rotate: {
-              duration: 20,
+              duration: 10,
               repeat: Infinity,
               ease: "linear",
             },
@@ -109,6 +117,7 @@ const HeroSection = ({
           </div>
         </motion.div>
       </div>
+      </motion.div>
 
       {/* Content */}
       <motion.div
