@@ -22,16 +22,16 @@ const HeroSection = ({
   roboticCoreOpacity,
   contentOpacity,
 }: HeroSectionProps) => {
-  const { scrollY } = useScroll();
-  const scale = useTransform(scrollY, [0, 300], [1, 1.5]);
-  const y = useTransform(scrollY, [0, 300], [0, -100]);
-
+  const { scrollYProgress } = useScroll()
+  // const scale = useTransform(scrollY, [0, 300], [1, 1.5]);
+  // const y = useTransform(scrollY, [0, 300], [0, -100]);
   useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
-      console.log("scrollY:", latest);
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
+    const handleScroll = () => {
+      console.log("scrollY:", window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.section
@@ -62,9 +62,9 @@ const HeroSection = ({
             },
           }}
           style={{
-            scale: roboticCoreScale || scale,
+            scale: roboticCoreScale || scrollYProgress,
             x: roboticCoreX,
-            y: y,
+            y: scrollYProgress,
             opacity: roboticCoreOpacity,
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"

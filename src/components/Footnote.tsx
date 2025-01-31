@@ -33,9 +33,9 @@ const Footnote = () => {
           <a href="https://linkedin.com/in/honzik-schenk" target="_blank" rel="noopener noreferrer" className="text-foreground transition duration-750 hover:text-blue-500">
             <FaLinkedin size={32} />
           </a>
-          {/* <a href="https://twitter.com/example" target="_blank" rel="noopener noreferrer" className="text-foreground transition duration-750 hover:text-blue-500">
-            <FaTwitter size={32} />
-          </a> */}
+          <a href="https://se-webring.xyz" target="_blank" rel="noopener noreferrer" className="text-foreground transition duration-750 hover:text-blue-500 mt-1">
+            <img src="logo_b.png" alt="SE-Webring Logo" width={32} height={32} />
+          </a>
         </motion.div>
         <motion.p
           className="text-lg text-muted-foreground"
