@@ -39,7 +39,7 @@ const ProjectCard = ({
       transition={{ duration: 0.5 }}
       className="w-full bg-background"
     >
-      <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 h-[450px]">
+      <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300"> {/* h-[450px] */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
