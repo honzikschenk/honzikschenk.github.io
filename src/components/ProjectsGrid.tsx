@@ -22,7 +22,7 @@ const ProjectsGrid = ({
       description:
         "Autonomous campus navigator that leads users to their classes using Robot OS and Raspberry Pi.",
       image:
-        "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg",
+        "path-maxer.jpg",
       techStack: [
         { name: "Robot OS", color: "bg-blue-600" },
         { name: "Raspberry Pi", color: "bg-red-500" },
@@ -30,37 +30,38 @@ const ProjectsGrid = ({
         { name: "React Native", color: "bg-green-500" },
         { name: "Bluetooth", color: "bg-blue-500" },
       ],
-      demoLink: "https://demo.example.com/campus",
+      demoLink: "https://drive.google.com/file/d/1TNJl6DPzvSaDpCO_igs-X81bE8GjgqE4/view?usp=sharing",
       githubLink: "",
     },
     {
-      title: "GiveGain",
+      title: "Degub Debacle",
       description:
-        "Social-media-style app connecting volunteers with organizations using Next.js and PostgreSQL.",
+        "3rd place at McHacks 2025 - Compete against others to fix bugs!",
       image:
-        "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg",
+        "/debug-debacle.jpg",
       techStack: [
-        { name: "Next.js", color: "bg-blue-600" },
-        { name: "PostgreSQL", color: "bg-blue-700" },
-        { name: "Prisma", color: "bg-green-500" },
-        { name: "JavaScript/Typescript", color: "bg-yellow-500" },
+        { name: "React", color: "bg-blue-600" },
+        { name: "Flask", color: "bg-orange-500" },
+        { name: "Gumloops AI", color: "bg-green-500" },
+        { name: "Typescript", color: "bg-yellow-500" },
+        { name: "Python", color: "bg-blue-700" },
       ],
-      demoLink: "https://demo.example.com/givegain",
-      githubLink: "",
+      demoLink: "https://debug-debacle.vercel.app/",
+      githubLink: "https://github.com/honzikschenk/debug-debacle",
     },
     {
       title: "Omnidirectional Smart Car",
       description:
         "Omnidirectional smart car controlled via web interface using ESP32 and Arduino.",
       image:
-        "https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg",
+        "buddy-bot.jpg",
       techStack: [
         { name: "ESP32", color: "bg-blue-600" },
         { name: "Arduino", color: "bg-red-500" },
         { name: "HTTP", color: "bg-purple-500" },
         { name: "HTTPS", color: "bg-green-500" },
       ],
-      demoLink: "https://demo.example.com/smart-car",
+      demoLink: "",
       githubLink: "",
     }
 
