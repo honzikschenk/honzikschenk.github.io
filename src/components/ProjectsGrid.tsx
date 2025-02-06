@@ -62,7 +62,7 @@ const ProjectsGrid = ({
         { name: "HTTPS", color: "bg-green-500" },
       ],
       demoLink: "",
-      githubLink: "",
+      githubLink: "https://github.com/honzikschenk/Omnidirectional-Smart-Car",
     }
 
     // Campus Navigation Vehicle | Robot OS, Raspberry Pi, C/C++, React Native, Expo, Bluetooth
