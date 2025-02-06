@@ -30,7 +30,7 @@ jobs:
     # - run: npm run deploy
     - name: Deploy with gh-pages
       run: |
-        echo 'https://honzikschenk.me/' > dist/CNAME
+        echo 'honzikschenk.me' > dist/CNAME
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         npx gh-pages -d dist --cname "honzikschenk.me" -u "github-actions-bot <support+actions@github.com>"
       env:
