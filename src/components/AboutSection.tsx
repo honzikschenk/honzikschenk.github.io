@@ -23,24 +23,6 @@ interface AboutSectionProps {
 const AboutSection = ({
   bio = "I'm Honzík, a first-year software engineering student at the University of Waterloo interested in integrated software engineering for robotics and space applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. I love backpacking, mountain biking, and rock climbing in my free time.",
   skills = {
-    // { name: "C++", level: 90, color: "bg-blue-500" },
-    // { name: "Java", level: 85, color: "bg-orange-500" },
-    // { name: "Python", level: 80, color: "bg-green-500" },
-    // { name: "JavaScript/Typescript", level: 75, color: "bg-purple-500" },
-    // { name: "React.js", level: 70, color: "bg-blue-600" },
-    // { name: "Node.js", level: 65, color: "bg-green-600" },
-    // { name: "MongoDB", level: 60, color: "bg-green-700" },
-    // { name: "PostgreSQL", level: 55, color: "bg-blue-700" },
-    // { name: "Robot OS 2", level: 50, color: "bg-purple-600" },
-    // { name: "Gradle/Maven", level: 45, color: "bg-orange-600" },
-    // { name: "HTML/CSS", level: 40, color: "bg-green-700" },
-    // { name: "Docker", level: 35, color: "bg-blue-700" },
-    // { name: "VS Code", level: 30, color: "bg-purple-700" },
-    // { name: "Git/GitHub Actions", level: 25, color: "bg-orange-700" },
-    // { name: "IntelliJ", level: 20, color: "bg-green-800" },
-    // { name: "GIS", level: 15, color: "bg-blue-800" },
-    // { name: "Continuous Integration", level: 10, color: "bg-purple-800" },
-
     languages: [
       { name: "C++", level: 90, color: "bg-blue-500" },
       { name: "Java", level: 85, color: "bg-orange-500" },
@@ -80,12 +62,6 @@ const AboutSection = ({
       },
       { name: "Grant Writing", level: 100, color: "bg-purple-600" },
     ],
-
-    // Languages: Object Oriented Programming (C++, Java, Python, Typescript), JavaScript, C, SQL, HTML/CSS
-    // Frameworks and Databases: React.js, React Native, Node.js, Next.js, Expo, Robot OS 2, Gradle, Maven, MongoDB, PostgreSQL
-    // Developer Tools: Git, GitHub Actions, Docker, VS Code, Visual Studio, IntelliJ, GIS, Continuous Integration
-    // Engineering Skills: Boolean algebra, Schematic Design, Soldering, Electrical Wiring, Lab Equipment
-    // Soft Skills: Leadership and Mentorship, Presentation and Communication, Grant Writing
   },
 }: AboutSectionProps) => {
   return (
@@ -102,7 +78,7 @@ const AboutSection = ({
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           About Me
         </motion.h2>
@@ -113,7 +89,7 @@ const AboutSection = ({
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <Card className="p-6 h-full flex flex-col justify-center">
               <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
@@ -126,7 +102,7 @@ const AboutSection = ({
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <Card className="p-6 h-full">
               <h3 className="text-2xl font-semibold mb-6">
