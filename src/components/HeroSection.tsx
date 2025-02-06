@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "motion/react";
 import { Button } from "./ui/button";
 import { ArrowDown, Cpu, Zap } from "lucide-react";
 
@@ -22,17 +22,6 @@ const HeroSection = ({
   roboticCoreOpacity,
   contentOpacity,
 }: HeroSectionProps) => {
-  const { scrollYProgress } = useScroll()
-  // const scale = useTransform(scrollY, [0, 300], [1, 1.5]);
-  // const y = useTransform(scrollY, [0, 300], [0, -100]);
-  useEffect(() => {
-    const handleScroll = () => {
-      console.log("scrollY:", window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -62,9 +51,9 @@ const HeroSection = ({
             },
           }}
           style={{
-            scale: roboticCoreScale || scrollYProgress,
+            scale: roboticCoreScale,
             x: roboticCoreX,
-            y: scrollYProgress,
+            y: 0, //TODO: Change - scrollYProgress
             opacity: roboticCoreOpacity,
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
