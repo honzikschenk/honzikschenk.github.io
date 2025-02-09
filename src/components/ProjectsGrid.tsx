@@ -64,19 +64,6 @@ const ProjectsGrid = ({
       demoLink: "",
       githubLink: "https://github.com/honzikschenk/Omnidirectional-Smart-Car",
     }
-
-    // Campus Navigation Vehicle | Robot OS, Raspberry Pi, C/C++, React Native, Expo, Bluetooth
-    // • Team developed a campus navigator that could autonomously lead a user to their classes
-    // • Prototype used a Raspberry Pi with Robot OS and localized using AprilTags
-    // • Took the user′s schedule via an Expo/React Native app and uploaded it to the vehicle using Bluetooth
-    // • Detected obstacles in its path using an ultrasonic sensor and stopped to prevent collisions
-    // GiveGain (Fullstack Website) | Next.js, PostgreSQL, Prisma, Javascript/Typescript
-    // • Prototype social-media-style app that would serve as a way to connect volunteers with organizations
-    // • Utilized Next.js, PostgreSQL, and Prisma to achieve a streamlined full-stack experience
-    // Omnidirectional Smart Car for Microbots Hackathon | ESP32, EspNow (HTTP), Arduino, HTTPS
-    // • Omnidirectional smart car that could be controlled using a web interface served by an HTTP request (EspNow)
-    // • Car ran on an ESP32 chip and displayed emotions on an OLED screen
-    // • Emotions shaped by user’s actions, such as shaking the car or putting it upside down
   ],
 }: ProjectsGridProps) => {
   return (
