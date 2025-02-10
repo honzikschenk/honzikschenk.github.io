@@ -39,7 +39,9 @@ const ProjectCard = ({
       transition={{ duration: 0.5 }}
       className="w-full bg-background"
     >
-      <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300"> {/* h-[450px] */}
+      <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+        {" "}
+        {/* h-[450px] */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
@@ -47,7 +49,6 @@ const ProjectCard = ({
         >
           <img src={image} alt={title} className="w-full h-full object-cover" />
         </motion.div>
-
         <div className="p-6 space-y-4">
           <h3 className="text-2xl font-bold text-foreground">{title}</h3>
 
@@ -71,20 +72,28 @@ const ProjectCard = ({
               className="flex items-center gap-2"
               asChild
             >
-              <a href={demoLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-              </a>
+              {demoLink.length === 0 ? (
+                <></>
+              ) : (
+                <a href={demoLink} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4" />
+                  Demo
+                </a>
+              )}
             </Button>
             <Button
               variant="outline"
               className="flex items-center gap-2"
               asChild
             >
-              <a href={githubLink} target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4" />
-                Code
-              </a>
+              {githubLink.length === 0 ? (
+                <></>
+              ) : (
+                <a href={githubLink} target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4" />
+                  Code
+                </a>
+              )}
             </Button>
           </div>
         </div>

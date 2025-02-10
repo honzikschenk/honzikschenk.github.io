@@ -63,6 +63,21 @@ const ProjectsGrid = ({
       ],
       demoLink: "",
       githubLink: "https://github.com/honzikschenk/Omnidirectional-Smart-Car",
+    },
+    {
+      title: "UTRA Hacks 2025 - Competition Bot (2nd Place)",
+      description:
+        "Mini robot meant to solve UTRA Hack's 2025 capture the flag challenges. Won 2nd place at UTRA Hacks 2025",
+      image:
+        "/utra.jpg",
+      techStack: [
+        { name: "Adruino", color: "bg-blue-600" },
+        { name: "C++", color: "bg-purple-500" },
+        { name: "Embedded Sensors", color: "bg-orange-500" },
+        { name: "State-Machines", color: "bg-green-500" },
+      ],
+      demoLink: "https://devpost.com/software/lebot-james-qgf9kw",
+      githubLink: "https://github.com/vichua2006/UTRAHack2025",
     }
   ],
 }: ProjectsGridProps) => {
