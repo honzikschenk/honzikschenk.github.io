@@ -22,8 +22,9 @@ interface ScrollNavProps {
 const ScrollNav = ({
   sections = [
     { id: "hero", label: "Home", color: "bg-blue-500" },
-    { id: "projects", label: "Projects", color: "bg-green-500" },
     { id: "about", label: "About", color: "bg-purple-500" },
+    { id: "projects", label: "Projects", color: "bg-green-500" },
+    { id: "experience", label: "Work Experience", color: "bg-red-500" },
     { id: "contact", label: "Contact", color: "bg-orange-500" },
   ],
   activeSection = "hero",

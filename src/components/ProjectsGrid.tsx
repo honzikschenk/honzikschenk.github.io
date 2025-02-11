@@ -34,11 +34,11 @@ const ProjectsGrid = ({
       githubLink: "",
     },
     {
-      title: "Degub Debacle",
+      title: "Degub Debacle (3rd place)",
       description:
         "3rd place at McHacks 2025 - Compete against others to fix bugs!",
       image:
-        "/debug-debacle.jpg",
+        "debug-debacle.jpg",
       techStack: [
         { name: "React", color: "bg-blue-600" },
         { name: "Flask", color: "bg-orange-500" },
@@ -54,7 +54,7 @@ const ProjectsGrid = ({
       description:
         "Omnidirectional smart car controlled via web interface using ESP32 and Arduino.",
       image:
-        "buddy-bot.jpg",
+        "buddy-bot.png",
       techStack: [
         { name: "ESP32", color: "bg-blue-600" },
         { name: "Arduino", color: "bg-red-500" },
@@ -65,9 +65,9 @@ const ProjectsGrid = ({
       githubLink: "https://github.com/honzikschenk/Omnidirectional-Smart-Car",
     },
     {
-      title: "UTRA Hacks 2025 - Competition Bot (2nd Place)",
+      title: "UTRA Hacks 2025 Competition Bot (2nd Place)",
       description:
-        "Mini robot meant to solve UTRA Hack's 2025 capture the flag challenges. Won 2nd place at UTRA Hacks 2025",
+        "Mini robot meant to solve UTRA Hack's 2025 capture the flag challenges. Won 2nd place (closed challenge) at UTRA Hacks 2025",
       image:
         "/utra.jpg",
       techStack: [
