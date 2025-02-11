@@ -36,11 +36,11 @@ const ScrollNav = ({
       transition={{ duration: 0.5 }}
       className="fixed right-8 top-1/2 -translate-y-1/2 z-50 bg-background/80 backdrop-blur-sm rounded-full py-4 px-2"
     >
-      <TooltipProvider>
+      <TooltipProvider delayDuration={10}>
         <nav className="flex flex-col gap-4">
           {sections.map((section) => (
             <Tooltip key={section.id}>
-              <TooltipTrigger asChild>
+              <TooltipTrigger  asChild>
                 <button
                   onClick={() => onSectionClick(section.id)}
                   className="relative w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
