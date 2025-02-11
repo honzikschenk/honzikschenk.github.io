@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { motion, useMotionValue, useTransform } from "motion/react";
 import { scroll } from "motion";
 import HeroSection from "./HeroSection";
 import ProjectsGrid from "./ProjectsGrid";
@@ -18,18 +18,9 @@ const sections = [
 const HomePage = () => {
 
   const [activeSection, setActiveSection] = useState("hero");
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef();
 
-  const { scrollYProgress } = useScroll();
-  const [hookedYPostion, setHookedYPosition] = useState(0);
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setHookedYPosition(latest);
-    console.log(latest);
-  });
-
-  // const containerRef = useRef(null);
-
-  // const { scrollY } = useScroll();
+  const scrollYProgress = useMotionValue(0);
 
   const roboticCoreScale = useTransform(scrollYProgress, [0, 500], [1, 2]);
   const roboticCoreX = useTransform(scrollYProgress, [0, 500], [0, 300]);
@@ -81,13 +72,13 @@ const HomePage = () => {
 
   return (
     <div ref={containerRef} className="relative w-full min-h-screen bg-background overflow-x-hidden">
-      <BackgroundEffects />
-
       <ScrollNav
         sections={sections}
         activeSection={activeSection}
         onSectionClick={handleSectionClick}
       />
+
+      <BackgroundEffects />
 
       <div className="snap-y snap-mandatory h-screen overflow-y-auto scroll-smooth">
         <section id="hero" className="snap-start h-screen">

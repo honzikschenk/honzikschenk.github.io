@@ -7,11 +7,11 @@ interface BackgroundEffectsProps {
 }
 
 const BackgroundEffects = ({
-  gridColor = "rgba(64, 224, 208, 0.1)",
+  gridColor = "rgba(64, 224, 208, 0.2)",
   circuitColor = "rgba(0, 255, 128, 0.05)",
 }: BackgroundEffectsProps) => {
   return (
-    <div className="fixed inset-0 w-full h-full bg-background overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none">
       {/* Animated Clouds */}
       {Array.from({ length: 8 }).map((_, i) => (
         <motion.div

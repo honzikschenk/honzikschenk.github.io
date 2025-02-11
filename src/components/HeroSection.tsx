@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "motion/react";
+import { motion, MotionValue, useTransform } from "motion/react";
 import { Button } from "./ui/button";
 import { ArrowDown, Cpu, Zap } from "lucide-react";
 

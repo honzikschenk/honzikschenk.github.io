@@ -10,6 +10,7 @@ interface Skill {
 }
 
 interface AboutSectionProps {
+  image?: string;
   bio?: string;
   skills?: {
     languages: Skill[];
@@ -21,6 +22,7 @@ interface AboutSectionProps {
 }
 
 const AboutSection = ({
+  image = "profile.jpg",
   bio = "I'm Honzík, a first-year software engineering student at the University of Waterloo interested in integrated software engineering for robotics and space applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. I love backpacking, mountain biking, and rock climbing in my free time.",
   skills = {
     languages: [
@@ -91,9 +93,10 @@ const AboutSection = ({
             transition={{ delay: 0.3 }}
             viewport={{ once: false }}
           >
-            <Card className="p-6 h-full flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
-              <p className="text-muted-foreground leading-relaxed">{bio}</p>
+            <Card className="flex flex-col overflow-hidden">
+              <img src={image} alt="Profile Picture" style={{ height: "500px" }} className="w-full object-cover" />
+              <h3 className="px-6 text-2xl font-semibold my-4">Bio</h3>
+              <p className="px-6 text-muted-foreground mb-6">{bio}</p>
             </Card>
           </motion.div>
 

@@ -20,9 +20,9 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({
-  title = "Project Title",
-  description = "A brief description of the project and its key features. This is a placeholder text that can be replaced with actual project details.",
-  image = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  title = "",
+  description = "",
+  image = "",
   techStack = [
     { name: "React", color: "bg-blue-500" },
     { name: "TypeScript", color: "bg-blue-600" },
