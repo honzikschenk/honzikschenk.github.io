@@ -83,7 +83,7 @@ const HomePage = () => {
       <BackgroundEffects />
 
       <div className="snap-y snap-mandatory h-screen overflow-y-auto scroll-smooth">
-        <section id="hero" className="snap-start h-screen">
+        <section id="hero" className="snap-start snap-always h-screen">
           <HeroSection
             onExploreClick={handleExploreClick}
             roboticCoreScale={roboticCoreScale}
@@ -93,19 +93,19 @@ const HomePage = () => {
           />
         </section>
 
-        <section id="about" className="snap-start min-h-screen">
+        <section id="about" className="snap-start snap-always min-h-screen">
           <AboutSection />
         </section>
 
-        <section id="projects" className="snap-start min-h-screen">
+        <section id="projects" className="snap-start snap-always min-h-screen">
           <ProjectsGrid />
         </section>
 
-        <section id="experience" className="snap-start min-h-screen">
+        <section id="experience" className="snap-start snap-always min-h-screen">
           <Experience />
         </section>
 
-        <section id="contact" className="snap-start min-h-screen">
+        <section id="contact" className="snap-start snap-always min-h-screen">
           <Footnote />
         </section>
       </div>
