@@ -1,43 +1,53 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, MotionValue, useTransform } from "motion/react";
 
 interface BackgroundEffectsProps {
   gridColor?: string;
   circuitColor?: string;
+  scrollYProgress: MotionValue<number>;
 }
 
 const BackgroundEffects = ({
   gridColor = "rgba(64, 224, 208, 0.2)",
   circuitColor = "rgba(0, 255, 128, 0.05)",
+  scrollYProgress,
 }: BackgroundEffectsProps) => {
   return (
     <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none">
-      {/* Animated Clouds */}
-      {Array.from({ length: 8 }).map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute opacity-20"
-          style={{
-            width: `${Math.random() * 300 + 200}px`,
-            height: `${Math.random() * 200 + 100}px`,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(64, 224, 208, 0.2) 0%, transparent 70%)",
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: ["-100%", "200%"],
-            x: ["0%", `${(Math.random() - 0.5) * 50}%`],
-          }}
-          transition={{
-            duration: Math.random() * 10 + 15,
-            repeat: Infinity,
-            ease: "linear",
-            delay: -Math.random() * 20,
-          }}
-        />
-      ))}
+      {/* Animated Clouds with Parallax */}
+      {Array.from({ length: 16 }).map((_, i) => { // Increased cloud count to 16
+        const depthFactor = Math.random() * 0.6 + 0.4; // Random factor between 0.4 and 1.0 for varied parallax (kept)
+        
+        // Adjusted Parallax movement for more pronounced effect
+        const y = useTransform(scrollYProgress, [0, 1], [`-${20 + (1-depthFactor) * 80}%`, `${200 + (1-depthFactor) * 800}%`]);
+        
+        // Opacity: fade in at the start of scroll, fade out at the end (kept)
+        const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+        
+        // Adjusted Scale for refined depth perception without excessive size
+        const scale = useTransform(scrollYProgress, [0,1], [0.4 + (1-depthFactor) * 0.4, 0.8 + (1-depthFactor) * 0.8]);
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute" 
+            style={{
+              width: `${Math.random() * 250 + 150}px`, // Kept from previous adjustment
+              height: `${Math.random() * 150 + 75}px`, // Kept from previous adjustment
+              borderRadius: `${Math.random() * 20 + 40}% ${Math.random() * 20 + 40}% ${Math.random() * 20 + 40}% ${Math.random() * 20 + 40}% / ${Math.random() * 20 + 30}% ${Math.random() * 20 + 30}% ${Math.random() * 20 + 50}% ${Math.random() * 20 + 50}%`, // Kept
+              // Adjusted alpha in gradient for a slightly softer cloud appearance
+              background: `radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, rgba(220,220,220,0.5) 40%, rgba(200,200,200,0.15) 70%, transparent 100%)`, 
+              left: `${Math.random() * 100}%`,
+              filter: "blur(6px)", // Kept
+              // Motion values
+              y,
+              opacity,
+              scale,
+            }}
+            // Removed old animate and transition props
+          />
+        );
+      })}
 
       {/* Grid Pattern */}
       <motion.div
