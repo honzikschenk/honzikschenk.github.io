@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
-import { motion, MotionValue, useTransform } from "motion/react";
+import React from "react"; // useEffect and useTransform removed as they are not used
+import { motion, MotionValue } from "motion/react"; // useTransform removed
 import { Button } from "./ui/button";
 import { ArrowDown, Cpu, Zap } from "lucide-react";
+import { Link } from "react-router-dom"; // Added Link import
 
 interface HeroSectionProps {
   title?: string;
@@ -135,6 +136,7 @@ const HeroSection = ({
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4" // Added flex classes
         >
           <Button
             onClick={onExploreClick}
@@ -144,6 +146,16 @@ const HeroSection = ({
             Explore About Me
             <ArrowDown className="ml-2 h-4 w-4" />
           </Button>
+          <Link to="/solar-system">
+            <Button
+              size="lg"
+              variant="outline" // Using outline as suggested in the prompt
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+            >
+              Explore Interactive Universe
+              {/* Optional: <Rocket className="ml-2 h-4 w-4" /> */}
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
 
