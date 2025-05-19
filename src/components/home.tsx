@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "motion/react";
 import { scroll } from "motion";
+import { useLocation } from 'react-router-dom'; // Added import
 import HeroSection from "./HeroSection";
 import ProjectsGrid from "./ProjectsGrid";
 import ScrollNav from "./ScrollNav";
@@ -18,7 +19,7 @@ const sections = [
 ];
 
 const HomePage = () => {
-
+  const location = useLocation(); // Added location
   const [activeSection, setActiveSection] = useState("hero");
   const containerRef = useRef();
 
@@ -71,6 +72,22 @@ const HomePage = () => {
   const handleExploreClick = () => {
     handleSectionClick("about");
   };
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1); // Remove #
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(id); // Update active section for ScrollNav
+        } else {
+          console.warn(`Element with id '${id}' not found for scrolling.`);
+        }
+      }, 100);
+    }
+    // No specific action needed for else case based on current requirements
+  }, [location.hash, setActiveSection]); // Added dependencies
 
   return (
     <div ref={containerRef} className="relative w-full min-h-screen bg-background overflow-x-hidden">
