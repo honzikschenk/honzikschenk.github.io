@@ -1,8 +1,8 @@
 import { useMotionValueEvent, useScroll } from 'motion/react';
 import Home from './components/home';
 // import BackgroundEffects from './components/BackgroundEffects'; // If needed globally
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SolarSystemPage from './components/SolarSystemPage'; // New import
+import { Routes, Route } from 'react-router-dom'; // Corrected import
+import SolarSystemPage from './components/SolarSystemPage';
 
 function App() {
   // Existing scroll logic can remain if it's for global effects,
@@ -13,14 +13,14 @@ function App() {
   });
 
   return (
-    <Router>
-      {/* <BackgroundEffects /> */} {/* If this is a global background, it can stay here */}
+    <> {/* Or directly return <Routes> if no other global elements here */}
+      {/* <BackgroundEffects /> */} 
       {/* <p>E<br/>S<br/>I<br/>M<br/>N<br/>I<br/>O<br/>e<br/>s<br/>m<br/>o<br/>i<br/>e<br/>m<br/>c<br/>o<br/>c<br/>e<br/>a<br/>m<br/>c<br/>o<br/>i<br/>a<br/>m<br/>c<br/>o<br/>i<br/>m<br/>o<br/>i<br/>c<br/>e<br/>m<br/>i<br/>v<br/>o<br/>m<br/>S<br/>I<br/>M<br/>N<br/>I<br/>O<br/>e<br/>s<br/>m<br/>o<br/>i<br/>e<br/>m<br/>c<br/>o<br/>c<br/>e<br/>a<br/>m<br/>c<br/>o<br/>i<br/>a<br/>m<br/>c<br/>o<br/>i<br/>m<br/>o<br/>i<br/>c<br/>e<br/>m<br/>i<br/>v<br/>o<br/>m<br/>S<br/>I<br/>M<br/>N<br/>I<br/>O<br/>e<br/>s<br/>m<br/>o<br/>i<br/>e<br/>m<br/>c<br/>o<br/>c<br/>e<br/>a<br/>m<br/>c<br/>o<br/>i<br/>a<br/>m<br/>c<br/>o<br/>i<br/>m<br/>o<br/>i<br/>c<br/>e<br/>m<br/>i<br/>v<br/>o<br/>m<br/>S<br/>I<br/>M<br/>N<br/>I<br/>O<br/>e<br/>s<br/>m<br/>o<br/>i<br/>e<br/>m<br/>c<br/>o<br/>c<br/>e<br/>a<br/>m<br/>c<br/>o<br/>i<br/>a<br/>m<br/>c<br/>o<br/>i<br/>m<br/>o<br/>i<br/>c<br/>e<br/>m<br/>i<br/>v<br/>o<br/>m<br/>S<br/>I<br/>M<br/>N<br/>I<br/>O<br/>e<br/>s<br/>m<br/>o<br/>i<br/>e<br/>m<br/>c<br/>o<br/>c<br/>e<br/>a<br/>m<br/>c<br/>o<br/>i<br/>a<br/>m<br/>c<br/>o<br/>i<br/>m<br/>o<br/>i<br/>c<br/>e<br/>m<br/>i<br/>v<br/>o<br/>m</p> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/solar-system" element={<SolarSystemPage />} /> {/* Changed this line */}
+        <Route path="/solar-system" element={<SolarSystemPage />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
