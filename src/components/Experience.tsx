@@ -17,10 +17,18 @@ interface ExperienceProps {
 const Experience = ({
   Experience = [
     {
+      logo: "cowtech.png",
+      company: "Cowden Technologies, Inc.",
+      position: "Robotics and Autonomous Systems Intern",
+      duration: "May 2025 - Present",
+      description:
+        "Assisting in the design, development, and optimization of autonomous systems technologies. Designing various solutions to UAV sensors for autonomy such as PCB design, ROS development, and Pixhawk configuration.",
+    },
+    {
       logo: "warg.png",
       company: "Waterloo Aerial Robotics Group",
-      position: "Autonomous Subteam Member",
-      duration: "October 2024 - Present",
+      position: "Autonomous Subteam Project Manager - Simulation/Testing",
+      duration: "November 2024 - Present",
       description:
         "Work on a team developing a drone for competition that autonomously identifies fires and extinguishes them. Worked on IR Camera Calibration using OpenCV and Python to identify IR sources (fire substitute).",
     },

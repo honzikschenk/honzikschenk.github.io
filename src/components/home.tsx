@@ -80,7 +80,7 @@ const HomePage = () => {
         onSectionClick={handleSectionClick}
       />
 
-      <BackgroundEffects />
+      <BackgroundEffects scrollYProgress={scrollYProgress} />
 
       <div className="snap-y snap-mandatory h-screen overflow-y-auto scroll-smooth">
         <section id="hero" className="snap-start snap-always h-screen">
