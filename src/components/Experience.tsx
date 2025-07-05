@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
+import OptimizedImage from "./OptimizedImage";
 
 interface Experience {
   logo?: string;
@@ -17,7 +18,7 @@ interface ExperienceProps {
 const Experience = ({
   Experience = [
     {
-      logo: "warg.png",
+      logo: "warg.webp",
       company: "Waterloo Aerial Robotics Group",
       position: "Autonomous Subteam Member",
       duration: "October 2024 - Present",
@@ -25,7 +26,7 @@ const Experience = ({
         "Work on a team developing a drone for competition that autonomously identifies fires and extinguishes them. Worked on IR Camera Calibration using OpenCV and Python to identify IR sources (fire substitute).",
     },
     {
-      logo: "atc.jpg",
+      logo: "atc.webp",
       company: "Appalachian Trial Conservancy",
       position: "Campsite Inventory Technician",
       duration: "July 2024 - August 2024",
@@ -33,7 +34,7 @@ const Experience = ({
         "Worked independently to inventory campsites along assigned sections of the Appalachian Trail. Navigated Geographic information system (GIS) to document scientific assessments.",
     },
     {
-        logo: "vt.png",
+        logo: "vt.webp",
       company: "Virginia Tech Computer Science Department",
       position: "Back-End Cybersecurity Intern",
       duration: "February 2023 - May 2023",
@@ -41,7 +42,7 @@ const Experience = ({
         "Created a model of Virginia Tech's Smart Grid system to protect against cyber attacks. Used Internet of Things devices to interface with a Next.js and MongoDB app to control and monitor system. Presented our model at Virginia Tech's ICAT Day, winning the People's Choice Award.",
     },
     {
-      logo: "401.png",
+      logo: "401.webp",
       company: "FIRST Robotics Competition Team 401",
       position: "Programming Lead, Electrical Lead",
       duration: "September 2021 - May 2024",
@@ -80,10 +81,12 @@ const Experience = ({
                   >
                     <div className="bg-background p-6 rounded-lg shadow-lg w-full lg:w-1/2 flex items-center">
                       {experience.logo && (
-                        <img
+                        <OptimizedImage
                           src={experience.logo}
                           alt={`${experience.company} logo`}
-                          className="w-16 mr-4"
+                          className="w-64 mr-4"
+                          priority={false}
+                          sizes="64px"
                         />
                       )}
                       <div>

@@ -4,6 +4,7 @@ import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Github } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 interface TechStack {
   name: string;
@@ -47,7 +48,13 @@ const ProjectCard = ({
           transition={{ duration: 0.3 }}
           className="relative h-48 overflow-hidden"
         >
-          <img src={image} alt={title} className="w-full h-full object-cover" />
+          <OptimizedImage 
+            src={image} 
+            alt={title} 
+            className="w-full h-full object-cover"
+            priority={false}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </motion.div>
         <div className="p-6 space-y-4">
           <h3 className="text-2xl font-bold text-foreground">{title}</h3>

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
+import OptimizedImage from "./OptimizedImage";
 
 interface Skill {
   name: string;
@@ -22,7 +23,7 @@ interface AboutSectionProps {
 }
 
 const AboutSection = ({
-  image = "profile.jpg",
+  image = "profile.webp",
   bio = "I'm Honzík, a first-year software engineering student at the University of Waterloo interested in integrated software engineering for robotics and space applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. I love backpacking, mountain biking, and rock climbing in my free time.",
   skills = {
     languages: [
@@ -94,7 +95,14 @@ const AboutSection = ({
             viewport={{ once: false }}
           >
             <Card className="flex flex-col overflow-hidden">
-              <img src={image} alt="Profile Picture" style={{ height: "500px" }} className="w-full object-cover" />
+              <OptimizedImage 
+                src={image} 
+                alt="Profile Picture" 
+                style={{ height: "500px" }} 
+                className="w-full object-cover"
+                priority={true}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
               <h3 className="px-6 text-2xl font-semibold my-4">Bio</h3>
               <p className="px-6 text-muted-foreground mb-6">{bio}</p>
             </Card>

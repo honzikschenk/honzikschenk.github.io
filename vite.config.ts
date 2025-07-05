@@ -28,7 +28,29 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          motion: ['motion/react'],
+        },
+      },
+    },
+    // Enable compression
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
+  // Enable gzip compression and caching
   server: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000',
+    },
     // @ts-ignore
     allowedHosts: true,
   }

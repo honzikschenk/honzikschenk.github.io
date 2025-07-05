@@ -22,7 +22,7 @@ const ProjectsGrid = ({
       description:
         "Autonomous campus navigator that leads users to their classes using Robot OS and Raspberry Pi",
       image:
-        "path-maxer.jpg",
+        "path-maxer.webp",
       techStack: [
         { name: "Robot OS", color: "bg-blue-600" },
         { name: "Raspberry Pi", color: "bg-red-500" },
@@ -38,7 +38,7 @@ const ProjectsGrid = ({
       description:
         "3rd place at McHacks 2025 - Compete against others to fix bugs!",
       image:
-        "debug-debacle.jpg",
+        "debug-debacle.webp",
       techStack: [
         { name: "React", color: "bg-blue-600" },
         { name: "Flask", color: "bg-orange-500" },
@@ -54,7 +54,7 @@ const ProjectsGrid = ({
       description:
         "Omnidirectional smart car controlled via web interface using ESP32 and Arduino",
       image:
-        "buddy-bot.png",
+        "buddy-bot.webp",
       techStack: [
         { name: "ESP32", color: "bg-blue-600" },
         { name: "Arduino", color: "bg-red-500" },
@@ -69,7 +69,7 @@ const ProjectsGrid = ({
       description:
         "Mini robot meant to solve UTRA Hack's 2025 capture the flag challenges. Won 2nd place (closed challenge) at UTRA Hacks 2025",
       image:
-        "/utra.jpg",
+        "utra.webp",
       techStack: [
         { name: "Adruino", color: "bg-blue-600" },
         { name: "C++", color: "bg-purple-500" },
@@ -84,7 +84,7 @@ const ProjectsGrid = ({
       description:
         "This site - Modern portfolio site built with React",
       image:
-        "portfolio-site.png",
+        "portfolio-site.webp",
       techStack: [
         { name: "React", color: "bg-blue-600" },
         { name: "TypeScript", color: "bg-blue-700" },
