@@ -24,7 +24,7 @@ interface AboutSectionProps {
 
 const AboutSection = ({
   image = "profile.webp",
-  bio = "I'm Honzík, a first-year software engineering student at the University of Waterloo interested in integrated software engineering for robotics and space applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. I love backpacking, mountain biking, and rock climbing in my free time.",
+  bio = "I'm Honzík, a software engineering student at the University of Waterloo interested in integrated software engineering for robotics applications. I've worked with control theory concepts, such as state-space control, AprilTag localization, and PID loops, and collaborative tools like Github Actions, Git, and Gantt charts. In high school, I organized weekly standups, presented to local industry leaders, and participated in various community outreach events. At University, I'm an Autonomy Project Manager at WARG and am currently working on BARS, my bipedal robot! I love backpacking, mountain biking, and rock climbing in my free time.",
   skills = {
     languages: [
       { name: "C++", level: 90, color: "bg-blue-500" },
@@ -45,13 +45,15 @@ const AboutSection = ({
       { name: "Docker", level: 35, color: "bg-blue-700" },
       { name: "VS Code", level: 30, color: "bg-purple-700" },
       { name: "Git/GitHub Actions", level: 25, color: "bg-orange-700" },
+      { name: "KiCad", level: 50, color: "bg-teal-500" },
       { name: "IntelliJ", level: 20, color: "bg-green-800" },
-      { name: "GIS", level: 15, color: "bg-blue-800" },
       { name: "Continuous Integration", level: 10, color: "bg-purple-800" },
     ],
     engineering: [
       { name: "Boolean algebra", level: 70, color: "bg-blue-500" },
-      { name: "Schematic Design", level: 65, color: "bg-green-500" },
+      { name: "PCB/Schematic Design", level: 65, color: "bg-green-500" },
+      { name: "Control Theory", level: 60, color: "bg-red-500" },
+      { name: "Sensor Fusion", level: 55, color: "bg-yellow-500" },
       { name: "Soldering", level: 60, color: "bg-orange-500" },
       { name: "Electrical Wiring", level: 55, color: "bg-purple-500" },
       { name: "Lab Equipment", level: 50, color: "bg-blue-600" },
