@@ -20,7 +20,7 @@ const ProjectsGrid = ({
     {
       title: "Campus Navigation Vehicle",
       description:
-        "Autonomous campus navigator that leads users to their classes using Robot OS and Raspberry Pi.",
+        "Autonomous campus navigator that leads users to their classes using Robot OS and Raspberry Pi",
       image:
         "path-maxer.jpg",
       techStack: [
@@ -52,7 +52,7 @@ const ProjectsGrid = ({
     {
       title: "Omnidirectional Smart Car",
       description:
-        "Omnidirectional smart car controlled via web interface using ESP32 and Arduino.",
+        "Omnidirectional smart car controlled via web interface using ESP32 and Arduino",
       image:
         "buddy-bot.png",
       techStack: [
@@ -78,6 +78,21 @@ const ProjectsGrid = ({
       ],
       demoLink: "https://devpost.com/software/lebot-james-qgf9kw",
       githubLink: "https://github.com/vichua2006/UTRAHack2025",
+    },
+    {
+      title: "Personal Portfolio Website",
+      description:
+        "This site - Modern portfolio site built with React",
+      image:
+        "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      techStack: [
+        { name: "React", color: "bg-blue-600" },
+        { name: "TypeScript", color: "bg-blue-700" },
+        { name: "Tailwind CSS", color: "bg-cyan-500" },
+        { name: "Vite", color: "bg-purple-500" },
+      ],
+      demoLink: "https://honzikschenk.me",
+      githubLink: "https://github.com/honzikschenk/honzikschenk.github.io",
     }
   ],
 }: ProjectsGridProps) => {
