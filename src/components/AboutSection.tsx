@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import OptimizedImage from "./OptimizedImage";
@@ -71,42 +71,87 @@ const AboutSection = ({
 }: AboutSectionProps) => {
   return (
     <motion.section
-      className="w-full min-h-screen py-20 px-4 md:px-8 lg:px-16 flex items-center"
+      className="w-full min-h-screen py-12 sm:py-16 md:py-20 px-3 sm:px-4 md:px-8 lg:px-16 flex items-center relative"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      whileInView={{ opacity: 0.99 }}
-      transition={{ duration: 0.5 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, margin: "-100px" }}
     >
+      {/* Tech Elements Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              x: [0, 80, -40, 0],
+              y: [0, -60, 40, 0],
+              rotate: [0, 360],
+              scale: [1, 1.2, 0.8, 1],
+            }}
+            transition={{
+              duration: Math.random() * 15 + 20,
+              repeat: Infinity,
+              ease: "linear",
+              delay: -Math.random() * 25,
+            }}
+          >
+            <div className={`w-3 h-3 rounded-full ${i % 2 === 0 ? 'bg-blue-500/20' : 'bg-green-500/20'}`} />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-green-500/5 -z-10" />
+      
       <div className="max-w-7xl mx-auto w-full">
         <motion.h2
-          className="text-4xl font-bold text-center mb-12 text-foreground"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: false }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
         >
           About Me
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Bio Section */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: false }}
+            transition={{ delay: 0.0, duration: 0.6 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02 }}
           >
-            <Card className="flex flex-col overflow-hidden">
-              <OptimizedImage 
-                src={image} 
-                alt="Profile Picture" 
-                style={{ height: "500px" }} 
-                className="w-full object-cover"
-                priority={true}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <h3 className="px-6 text-2xl font-semibold my-4">Bio</h3>
-              <p className="px-6 text-muted-foreground mb-6">{bio}</p>
+            <Card className="flex flex-col overflow-hidden bg-background/95 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <OptimizedImage 
+                  src={image} 
+                  alt="Profile Picture" 
+                  style={{ height: "500px" }} 
+                  className="w-full object-cover"
+                  priority={true}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.0, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="p-6"
+              >
+                <h3 className="text-2xl font-semibold mb-4 text-foreground">Bio</h3>
+                <p className="text-muted-foreground leading-relaxed">{bio}</p>
+              </motion.div>
             </Card>
           </motion.div>
 
@@ -114,13 +159,19 @@ const AboutSection = ({
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: false }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <Card className="p-6 h-full">
-              <h3 className="text-2xl font-semibold mb-6">
+            <Card className="p-6 h-full bg-background/95 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-100 shadow-lg hover:shadow-xl">
+              <motion.h3
+                className="text-2xl font-semibold mb-6 text-foreground"
+                initial={{ y: 10, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+                viewport={{ once: true }}
+              >
                 Skills & Expertise
-              </h3>
+              </motion.h3>
               <div className="space-y-2">
                 <SkillSection title="Languages" skills={skills.languages} />
                 <SkillSection
@@ -149,17 +200,39 @@ const SkillSection = ({
   title: string;
   skills: Skill[];
 }) => (
-  <div>
-    <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {skills.map((skill) => (
-        <div key={skill.name} className="flex items-center">
-          <div className={`w-4 h-4 rounded-full ${skill.color} mr-2`}></div>
-          <span className="text-lg">{skill.name}</span>
-        </div>
+  <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    whileInView={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+    className="mb-6"
+  >
+    <motion.h4
+      className="text-lg font-semibold mb-3 text-foreground"
+      whileHover={{ scale: 1.02 }}
+    >
+      {title}
+    </motion.h4>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {skills.map((skill, index) => (
+        <motion.div
+          key={skill.name}
+          className="flex items-center p-2 rounded-lg bg-background/50 backdrop-blur-sm border border-border/30 hover:border-primary/40 transition-all duration-100"
+          initial={{ x: -20, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0, duration: 0.1 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.05, x: 5 }}
+        >
+          <motion.div
+            className={`w-3 h-3 rounded-full ${skill.color} mr-3 shadow-sm`}
+            whileHover={{ scale: 1.2 }}
+          />
+          <span className="text-sm font-medium text-foreground">{skill.name}</span>
+        </motion.div>
       ))}
     </div>
-  </div>
+  </motion.div>
 );
 
 export default AboutSection;

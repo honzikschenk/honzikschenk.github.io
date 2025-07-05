@@ -1,10 +1,9 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import OptimizedImage from "./OptimizedImage";
 
 interface TechStack {
   name: string;
@@ -36,28 +35,28 @@ const ProjectCard = ({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full bg-background"
+      className="w-full"
     >
-      <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
-        {" "}
-        {/* h-[450px] */}
+      <Card className="overflow-hidden group hover:shadow-2xl transition-all duration-500 bg-background/95 backdrop-blur-sm border border-border/50 hover:border-primary/30 rounded-xl">
         <motion.div
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-          className="relative h-48 overflow-hidden"
+          whileHover={{ scale: 1.01 }}
+          transition={{ duration: 0.6 }}
+          className="relative h-48 overflow-hidden rounded-t-xl"
         >
-          <OptimizedImage 
+          <img 
             src={image} 
             alt={title} 
-            className="w-full h-full object-cover"
-            priority={false}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            loading="lazy"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
         </motion.div>
-        <div className="p-6 space-y-4">
-          <h3 className="text-2xl font-bold text-foreground">{title}</h3>
+        <div className="p-6 space-y-4 bg-background/95 backdrop-blur-sm">
+          <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">
+            {title}
+          </h3>
 
           <p className="text-muted-foreground line-clamp-3">{description}</p>
 
@@ -66,7 +65,7 @@ const ProjectCard = ({
               <Badge
                 key={index}
                 variant="secondary"
-                className={`${tech.color || "bg-gray-500"} text-white`}
+                className={`${tech.color || "bg-gray-500"} text-white border-0 transition-transform duration-200`}
               >
                 {tech.name}
               </Badge>
@@ -74,34 +73,30 @@ const ProjectCard = ({
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Button
-              variant="outline"
-              className="flex items-center gap-2"
-              asChild
-            >
-              {demoLink.length === 0 ? (
-                <></>
-              ) : (
+            {demoLink.length > 0 && (
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 hover:bg-blue-500/10 hover:border-blue-500/50 transition-colors duration-200"
+                asChild
+              >
                 <a href={demoLink} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="w-4 h-4" />
                   Demo
                 </a>
-              )}
-            </Button>
-            <Button
-              variant="outline"
-              className="flex items-center gap-2"
-              asChild
-            >
-              {githubLink.length === 0 ? (
-                <></>
-              ) : (
+              </Button>
+            )}
+            {githubLink.length > 0 && (
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 hover:bg-green-500/10 hover:border-green-500/50 transition-colors duration-200"
+                asChild
+              >
                 <a href={githubLink} target="_blank" rel="noopener noreferrer">
                   <Github className="w-4 h-4" />
                   Code
                 </a>
-              )}
-            </Button>
+              </Button>
+            )}
           </div>
         </div>
       </Card>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "motion/react";
-import { scroll } from "motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { scroll } from "framer-motion";
 import HeroSection from "./HeroSection";
 import ProjectsGrid from "./ProjectsGrid";
 import ScrollNav from "./ScrollNav";
@@ -73,7 +73,13 @@ const HomePage = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-screen bg-background overflow-x-hidden">
+    <motion.div
+      ref={containerRef}
+      className="relative w-full min-h-screen bg-gradient-to-br from-background via-background/98 to-primary/5 overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+    >
       <ScrollNav
         sections={sections}
         activeSection={activeSection}
@@ -82,8 +88,13 @@ const HomePage = () => {
 
       <BackgroundEffects />
 
-      <div className="snap-y snap-mandatory h-screen overflow-y-auto scroll-smooth">
-        <section id="hero" className="snap-start snap-always h-screen">
+      <motion.div
+        className="snap-y snap-mandatory h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
+        initial={{ y: 20 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        <section id="hero" className="snap-start snap-always min-h-screen overflow-hidden">
           <HeroSection
             onExploreClick={handleExploreClick}
             roboticCoreScale={roboticCoreScale}
@@ -93,23 +104,51 @@ const HomePage = () => {
           />
         </section>
 
-        <section id="about" className="snap-start snap-always min-h-screen">
+        <motion.section
+          id="about"
+          className="snap-start snap-always min-h-screen relative"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <AboutSection />
-        </section>
+        </motion.section>
 
-        <section id="projects" className="snap-start snap-always min-h-screen">
+        <motion.section
+          id="projects"
+          className="snap-start snap-always min-h-screen relative"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <ProjectsGrid />
-        </section>
+        </motion.section>
 
-        <section id="experience" className="snap-start snap-always min-h-screen">
+        <motion.section
+          id="experience"
+          className="snap-start snap-always min-h-screen relative"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <Experience />
-        </section>
+        </motion.section>
 
-        <section id="contact" className="snap-start snap-always min-h-screen">
+        <motion.section
+          id="contact"
+          className="snap-start snap-always min-h-screen relative"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <Footnote />
-        </section>
-      </div>
-    </div>
+        </motion.section>
+      </motion.div>
+    </motion.div>
   );
 };
 
