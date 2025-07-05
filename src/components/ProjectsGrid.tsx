@@ -84,7 +84,7 @@ const ProjectsGrid = ({
       description:
         "This site - Modern portfolio site built with React",
       image:
-        "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "portfolio-site.png",
       techStack: [
         { name: "React", color: "bg-blue-600" },
         { name: "TypeScript", color: "bg-blue-700" },
