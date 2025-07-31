@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { motion, MotionValue, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowDown, Cpu, Zap, Plane, Cog } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { ArrowDown, Cpu, Zap, Plane, Cog, Rocket } from "lucide-react";
 
 interface HeroSectionProps {
   title?: string;
   subtitle?: string;
   onExploreClick?: () => void;
+  onSpaceGameClick?: () => void;
   roboticCoreScale?: MotionValue<number>;
   roboticCoreX?: MotionValue<number>;
   roboticCoreOpacity?: MotionValue<number>;
@@ -17,6 +19,7 @@ const HeroSection = ({
   title = "Jan \"Honzik\" Schenk",
   subtitle = "Software Engineering student at the University of Waterloo",
   onExploreClick = () => console.log("Explore clicked"),
+  onSpaceGameClick = () => console.log("Space game clicked"),
   roboticCoreScale,
   roboticCoreX,
   roboticCoreOpacity,
@@ -210,17 +213,46 @@ const HeroSection = ({
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button
-            onClick={onExploreClick}
-            size="lg"
-            className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Explore About Me
-            <ArrowDown className="ml-2 h-4 w-4" />
-          </Button>
+            <Button
+              onClick={onExploreClick}
+              size="lg"
+              className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Explore About Me
+              <ArrowDown className="ml-2 h-4 w-4" />
+            </Button>
+          </motion.div>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    onClick={onSpaceGameClick}
+                    size="lg"
+                    variant="outline"
+                    className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 border-purple-500/30 hover:border-purple-500/50 text-purple-400 hover:text-purple-300 shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <Rocket className="mr-2 h-4 w-4" />
+                    Space Mode
+                  </Button>
+                </motion.div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="font-medium">🚀 Explore my portfolio in space!</p>
+                <p className="text-xs">Navigate through a solar system of my skills and projects</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </motion.div>
       </motion.div>
 
