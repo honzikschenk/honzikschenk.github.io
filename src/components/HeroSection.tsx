@@ -229,30 +229,28 @@ const HeroSection = ({
             </Button>
           </motion.div>
 
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  onClick={onSpaceGameClick}
+                  size="lg"
+                  variant="outline"
+                  className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 border-purple-500/30 hover:border-purple-500/50 text-purple-400 hover:text-purple-300 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <Button
-                    onClick={onSpaceGameClick}
-                    size="lg"
-                    variant="outline"
-                    className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 border-purple-500/30 hover:border-purple-500/50 text-purple-400 hover:text-purple-300 shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <Rocket className="mr-2 h-4 w-4" />
-                    Space Mode
-                  </Button>
-                </motion.div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="font-medium">🚀 Explore my portfolio in space!</p>
-                <p className="text-xs">Navigate through a solar system of my skills and projects</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+                  <Rocket className="mr-2 h-4 w-4" />
+                  Space Mode
+                </Button>
+              </motion.div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="font-medium">🚀 Explore my portfolio in space!</p>
+              <p className="text-xs">Navigate through a solar system of my skills and projects</p>
+            </TooltipContent>
+          </Tooltip>
         </motion.div>
       </motion.div>
 
