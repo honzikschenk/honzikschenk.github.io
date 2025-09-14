@@ -31,10 +31,10 @@ const Experience = ({
     {
       logo: "warg.webp",
       company: "Waterloo Aerial Robotics Group",
-      position: "Autonomous Subteam Project Manager - Simulation/Testing",
+      position: "Autonomy Subteam Lead, prev. Project Manager - Simulation/Testing",
       duration: "November 2024 - Present",
       description:
-        "Work on a team developing a drone for competition that autonomously identifies fires and extinguishes them. Worked on IR Camera Calibration using OpenCV and Python to identify IR sources (fire substitute).",
+        "Lead a subteam on a competition drone project focused on autonomous fire detection and suppression. Managed the development for a new Hardware in the Loop project, emulating a physical drone layout",
       tags: ["UAV", "OpenCV", "Python", "IR Camera", "Autonomous Systems", "Competition"],
     },
     {

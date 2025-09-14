@@ -34,6 +34,21 @@ const ProjectsGrid = ({
       githubLink: "",
     },
     {
+      title: "UWaterloo Outers Club Website",
+      description:
+        "University Outdoor Club Website, complete with a custom rental system, blog, events page, and gallery",
+      image:
+        "/outers-club.webp",
+      techStack: [
+        { name: "Next.js", color: "bg-green-500" },
+        { name: "React", color: "bg-purple-500" },
+        { name: "TypeScript", color: "bg-blue-700" },
+        { name: "Tailwind CSS", color: "bg-cyan-500" },
+      ],
+      demoLink: "",
+      githubLink: "",
+    },
+    {
       title: "Degub Debacle (3rd place)",
       description:
         "3rd place at McHacks 2025 - Compete against others to fix bugs!",
