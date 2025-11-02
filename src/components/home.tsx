@@ -8,6 +8,8 @@ import BackgroundEffects from "./BackgroundEffects";
 import AboutSection from "./AboutSection";
 import Footnote from "./Footnote";
 import Experience from "./Experience";
+import SpaceGame from "./SpaceGame";
+import { TooltipProvider } from "./ui/tooltip";
 
 const sections = [
   { id: "hero", label: "Home", color: "bg-blue-500" },
@@ -20,6 +22,7 @@ const sections = [
 const HomePage = () => {
 
   const [activeSection, setActiveSection] = useState("hero");
+  const [isSpaceGameOpen, setIsSpaceGameOpen] = useState(false);
   const containerRef = useRef();
 
   const scrollYProgress = useMotionValue(0);
@@ -72,14 +75,23 @@ const HomePage = () => {
     handleSectionClick("about");
   };
 
+  const handleSpaceGameClick = () => {
+    setIsSpaceGameOpen(true);
+  };
+
+  const handleSpaceGameClose = () => {
+    setIsSpaceGameOpen(false);
+  };
+
   return (
-    <motion.div
-      ref={containerRef}
-      className="relative w-full min-h-screen bg-gradient-to-br from-background via-background/98 to-primary/5 overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-    >
+    <TooltipProvider>
+      <motion.div
+        ref={containerRef}
+        className="relative w-full min-h-screen bg-gradient-to-br from-background via-background/98 to-primary/5 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
       <ScrollNav
         sections={sections}
         activeSection={activeSection}
@@ -97,6 +109,7 @@ const HomePage = () => {
         <section id="hero" className="snap-start snap-always min-h-screen overflow-hidden">
           <HeroSection
             onExploreClick={handleExploreClick}
+            onSpaceGameClick={handleSpaceGameClick}
             roboticCoreScale={roboticCoreScale}
             roboticCoreX={roboticCoreX}
             roboticCoreOpacity={roboticCoreOpacity}
@@ -148,7 +161,11 @@ const HomePage = () => {
           <Footnote />
         </motion.section>
       </motion.div>
-    </motion.div>
+
+      {/* Space Game Modal */}
+      <SpaceGame open={isSpaceGameOpen} onClose={handleSpaceGameClose} />
+      </motion.div>
+    </TooltipProvider>
   );
 };
 

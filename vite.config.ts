@@ -27,6 +27,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    dedupe: ["react", "react-dom"],
   },
   build: {
     rollupOptions: {
@@ -50,6 +51,10 @@ export default defineConfig({
   server: {
     headers: {
       'Cache-Control': 'public, max-age=31536000',
+    },
+    hmr: {
+      protocol: "ws",
+      host: "localhost",
     },
     // @ts-ignore
     allowedHosts: true,
