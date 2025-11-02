@@ -17,6 +17,7 @@ function App() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      <meta name="google-site-verification" content="helwpHfsNgYhgRxqO2WwnKXazH3vtoGAf26b7al9YQY" />
       <BackgroundEffects />
       <Home/>
     </motion.div>
