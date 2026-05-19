@@ -1,26 +1,11 @@
-import { useState } from 'react'
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import Home from './components/home';
-import BackgroundEffects from './components/BackgroundEffects';
+import Home from "./components/home";
 
 function App() {
-  const { scrollYProgress } = useScroll();
-
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    console.log(current)
-  })
-
   return (
-    <motion.div
-      className="relative min-h-screen overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <BackgroundEffects />
-      <Home/>
-    </motion.div>
-  )
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <Home />
+    </div>
+  );
 }
 
-export default App
+export default App;

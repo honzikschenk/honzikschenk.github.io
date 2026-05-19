@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { scroll } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll } from "framer-motion";
 import HeroSection from "./HeroSection";
 import ProjectsGrid from "./ProjectsGrid";
 import ScrollNav from "./ScrollNav";
@@ -8,147 +7,136 @@ import BackgroundEffects from "./BackgroundEffects";
 import AboutSection from "./AboutSection";
 import Footnote from "./Footnote";
 import Experience from "./Experience";
+import {
+  aboutContent,
+  contactContent,
+  experienceIntro,
+  experiences,
+  heroContent,
+  navigationSections,
+  projects,
+  projectsIntro,
+  skillGroups,
+} from "@/content/siteContent";
 
-const sections = [
-  { id: "hero", label: "Home", color: "bg-blue-500" },
-  { id: "about", label: "About", color: "bg-purple-500" },
-  { id: "projects", label: "Projects", color: "bg-green-500" },
-  { id: "experience", label: "Experience", color: "bg-red-500" },
-  { id: "contact", label: "Connections", color: "bg-orange-500" },
-];
+const sections = navigationSections;
 
 const HomePage = () => {
-
   const [activeSection, setActiveSection] = useState("hero");
-  const containerRef = useRef();
-
-  const scrollYProgress = useMotionValue(0);
-
-  const roboticCoreScale = useTransform(scrollYProgress, [0, 500], [1, 2]);
-  const roboticCoreX = useTransform(scrollYProgress, [0, 500], [0, 300]);
-  const roboticCoreOpacity = useTransform(scrollYProgress, [0, 200, 500], [1, 1, 0]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 200], [1, 0]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-50% 0px",
-        threshold: 0,
-      }
-    );
+    let ticking = false;
 
-    const { current } = containerRef;
-    if (current) {
+    const updateActiveSection = () => {
+      const targetY = window.innerHeight * 0.45;
+      let closestSection = sections[0]?.id ?? "hero";
+      let closestDistance = Number.POSITIVE_INFINITY;
+
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
-        if (element) {
-          observer.observe(element);
+        if (!element) {
+          return;
+        }
+
+        const rect = element.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(sectionCenter - targetY);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestSection = section.id;
         }
       });
-    }
+
+      setActiveSection((current) =>
+        current === closestSection ? current : closestSection
+      );
+    };
+
+    const onScrollOrResize = () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActiveSection();
+        ticking = false;
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
 
     return () => {
-      observer.disconnect();
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
     };
-  }, [containerRef]);
+  }, []);
 
   const handleSectionClick = (sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: window.matchMedia("(max-width: 768px)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
     }
   };
 
-  const handleExploreClick = () => {
-    handleSectionClick("about");
-  };
-
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      className="relative w-full min-h-screen bg-gradient-to-br from-background via-background/98 to-primary/5 overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+      className="relative w-full"
     >
+      <BackgroundEffects />
+
       <ScrollNav
         sections={sections}
         activeSection={activeSection}
         onSectionClick={handleSectionClick}
       />
 
-      <BackgroundEffects />
-
-      <motion.div
-        className="snap-y snap-mandatory h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
-        initial={{ y: 20 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
+      <motion.main
+        className="relative z-10"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <section id="hero" className="snap-start snap-always min-h-screen overflow-hidden">
+        <section id="hero" className="min-h-screen">
           <HeroSection
-            onExploreClick={handleExploreClick}
-            roboticCoreScale={roboticCoreScale}
-            roboticCoreX={roboticCoreX}
-            roboticCoreOpacity={roboticCoreOpacity}
-            contentOpacity={contentOpacity}
+            {...heroContent}
+            onExploreClick={() => handleSectionClick("about")}
+            scrollProgress={scrollYProgress}
           />
         </section>
 
-        <motion.section
-          id="about"
-          className="snap-start snap-always min-h-screen relative"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          <AboutSection />
-        </motion.section>
+        <section id="about" className="relative min-h-screen">
+          <AboutSection {...aboutContent} skillGroups={skillGroups} />
+        </section>
 
-        <motion.section
-          id="projects"
-          className="snap-start snap-always min-h-screen relative"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          <ProjectsGrid />
-        </motion.section>
+        <section id="projects" className="relative min-h-screen">
+          <ProjectsGrid {...projectsIntro} projects={projects} />
+        </section>
 
-        <motion.section
-          id="experience"
-          className="snap-start snap-always min-h-screen relative"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          <Experience />
-        </motion.section>
+        <section id="experience" className="relative min-h-screen">
+          <Experience {...experienceIntro} experiences={experiences} />
+        </section>
 
-        <motion.section
-          id="contact"
-          className="snap-start snap-always min-h-screen relative"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          <Footnote />
-        </motion.section>
-      </motion.div>
-    </motion.div>
+        <section id="contact" className="relative min-h-screen">
+          <Footnote {...contactContent} />
+        </section>
+      </motion.main>
+    </div>
   );
 };
 

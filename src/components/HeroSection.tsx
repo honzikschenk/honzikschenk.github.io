@@ -1,250 +1,126 @@
-import React, { useEffect } from "react";
-import { motion, MotionValue, useTransform } from "framer-motion";
+import { motion, MotionValue, useMotionValue, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowDown, Cpu, Zap, Plane, Cog } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import type { HeroContent } from "@/content/siteContent";
 
-interface HeroSectionProps {
-  title?: string;
-  subtitle?: string;
+interface HeroSectionProps extends HeroContent {
   onExploreClick?: () => void;
-  roboticCoreScale?: MotionValue<number>;
-  roboticCoreX?: MotionValue<number>;
-  roboticCoreOpacity?: MotionValue<number>;
-  contentOpacity?: MotionValue<number>;
+  scrollProgress?: MotionValue<number>;
 }
 
 const HeroSection = ({
-  title = "Jan \"Honzik\" Schenk",
-  subtitle = "Software Engineering student at the University of Waterloo",
-  onExploreClick = () => console.log("Explore clicked"),
-  roboticCoreScale,
-  roboticCoreX,
-  roboticCoreOpacity,
-  contentOpacity,
+  eyebrow,
+  name,
+  role,
+  summary,
+  image,
+  imageAlt,
+  ctaLabel,
+  onExploreClick,
+  scrollProgress,
 }: HeroSectionProps) => {
+  const fallbackProgress = useMotionValue(0);
+  const progress = scrollProgress ?? fallbackProgress;
+
+  const headingY = useTransform(progress, [0, 1], [0, -90]);
+  const headingOpacity = useTransform(progress, [0, 0.7], [1, 0.35]);
+  const imageY = useTransform(progress, [0, 1], [0, -110]);
+  const imageX = useTransform(progress, [0, 1], [0, 24]);
+
+  const handleExploreClick = () => {
+    if (onExploreClick) {
+      onExploreClick();
+      return;
+    }
+
+    const target = document.getElementById("about");
+    if (!target) {
+      return;
+    }
+
+    target.scrollIntoView({
+      behavior: window.matchMedia("(max-width: 768px)").matches ? "auto" : "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="relative min-h-screen w-full bg-gradient-to-br from-background via-background/95 to-blue-500/5 flex items-center justify-center overflow-hidden"
+      transition={{ duration: 0.6 }}
+      className="relative flex min-h-screen w-full items-center overflow-hidden px-4 pb-16 pt-24 sm:px-8"
     >
-      {/* Floating Cloud Effects */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${Math.random() * 70 + 15}%`,
-              top: `${Math.random() * 70 + 15}%`,
-            }}
-            animate={{
-              x: [0, 30, -15, 0],
-              y: [0, -20, 15, 0],
-              rotate: [0, 360],
-              scale: [1, 1.1, 0.9, 1],
-            }}
-            transition={{
-              duration: 12 + Math.random() * 8,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * 15,
-            }}
-          >
-            {i % 4 === 0 ? (
-              <Cpu className="w-6 h-6 text-blue-500/40" />
-            ) : i % 4 === 1 ? (
-              <Zap className="w-6 h-6 text-green-500/40" />
-            ) : i % 4 === 2 ? (
-              <Cog className="w-6 h-6 text-blue-400/40" />
-            ) : (
-              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500/40 to-green-500/40" />
-            )}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Drone Flight Path */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: "-50px",
-              top: `${25 + i * 15}%`,
-            }}
-            animate={{
-              x: ["0px", "calc(100vw + 50px)"],
-              y: [0, -30, 0, 30, 0],
-            }}
-            transition={{
-              duration: 20 + i * 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 6,
-            }}
-          >
-            <Plane className="w-4 h-4 text-blue-500/60 rotate-45" />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Robotic Elements */}
-      <motion.div>
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Central Core */}
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_360px] lg:gap-14">
         <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            rotate: {
-              duration: 10,
-              repeat: Infinity,
-              ease: "linear",
-            },
-            scale: {
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
-          style={{
-            scale: roboticCoreScale,
-            x: roboticCoreX,
-            y: 0, //TODO: Change - scrollYProgress
-            opacity: roboticCoreOpacity,
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
+          className="space-y-7"
+          style={{ y: headingY, opacity: headingOpacity }}
         >
-          <div className="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-r from-blue-500/20 via-green-500/10 to-blue-500/20 backdrop-blur-sm flex items-center justify-center shadow-2xl border-2 border-blue-500/30">
-            <motion.div
-              animate={{
-                rotate: -360,
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="relative w-56 h-56 sm:w-72 sm:h-72 rounded-full border-2 border-green-500/40 shadow-lg"
-            >
-              {/* Orbiting Elements */}
-              {Array.from({ length: 3 }).map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    transform: `rotate(${i * 120}deg)`,
-                  }}
-                >
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      delay: i * 0.5,
-                      repeat: Infinity,
-                    }}
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-blue-500/30 shadow-lg"
-                  >
-                    {i === 0 ? (
-                      <Cpu className="w-4 h-4 text-blue-500" />
-                    ) : i === 1 ? (
-                      <Zap className="w-4 h-4 text-green-500" />
-                    ) : (
-                      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-green-500 shadow-inner" />
-                    )}
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
+          <div className="inline-flex items-center rounded-full border border-primary/30 bg-[#09233f]/80 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-primary/90 backdrop-blur-md">
+            {eyebrow}
+          </div>
+
+          <div className="space-y-3">
+            <h1 className="max-w-3xl text-4xl font-bold leading-[1.05] sm:text-5xl md:text-6xl xl:text-7xl">
+              {name}
+              <span className="mt-2 block bg-gradient-to-r from-primary via-sky-200 to-amber-200 bg-clip-text text-transparent sm:text-[0.42em] sm:leading-tight">
+                {role}
+              </span>
+            </h1>
+
+            <p className="max-w-xl text-base text-slate-200/85 sm:text-lg">
+              {summary}
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="relative mx-auto w-full max-w-[320px] sm:max-w-[360px] lg:ml-auto"
+          style={{ y: imageY, x: imageX }}
+          initial={{ opacity: 0, x: 18 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="relative px-2 py-3 sm:px-3 sm:py-4">
+            <div className="pointer-events-none absolute inset-1 rounded-2xl bg-[radial-gradient(circle_at_28%_25%,rgba(242,251,255,0.52),rgba(184,224,255,0.12)_58%,transparent_90%)] blur-md" />
+            <div className="absolute -left-8 top-7 h-20 w-32 cloud-body opacity-90" />
+            <div className="absolute -right-7 top-12 h-18 w-28 cloud-body opacity-80" />
+            <div className="absolute -bottom-6 left-9 h-16 w-28 cloud-body opacity-75" />
+
+            <div className="sky-glass relative overflow-hidden rounded-2xl border-primary/28 p-2 shadow-[0_18px_46px_rgba(56,134,204,0.28)]">
+              <div className="overflow-hidden rounded-xl border border-primary/28 bg-[#041121]">
+                <div className="relative aspect-[2/3] w-full">
+                  <img
+                    src={image}
+                    alt={imageAlt}
+                    className="h-full w-full object-cover object-center"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(4,17,33,0.08),rgba(4,17,33,0.34))]" />
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
-      </motion.div>
 
-      {/* Content */}
-      <motion.div
-        style={{ opacity: contentOpacity }}
-        className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mb-8"
-        >
-          <motion.div
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 bg-size-200 animate-gradient-x leading-tight">
-              {title}
-            </h1>
-          </motion.div>
-        </motion.div>
-
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 backdrop-blur-sm max-w-2xl mx-auto"
-        >
-          {subtitle}
-        </motion.p>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Button
-            onClick={onExploreClick}
-            size="lg"
-            className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Explore About Me
-            <ArrowDown className="ml-2 h-4 w-4" />
-          </Button>
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        transition={{ delay: 0.7 }}
+        className="absolute bottom-5 left-1/2 -translate-x-1/2"
       >
-        <motion.div
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        <Button
+          type="button"
+          onClick={handleExploreClick}
+          variant="ghost"
+          className="h-auto rounded-full border border-primary/25 bg-[#06172d]/75 px-4 py-2 text-primary hover:bg-[#0d2948]"
         >
-            <Button onClick={onExploreClick} className="bg-transparent hover:bg-transparent shadow-none border-none">
-              <ArrowDown className="h-6 w-6 text-muted-foreground hover:text-blue-500 transition-colors duration-300" />
-            </Button>
-        </motion.div>
+          <ArrowDown className="mr-2 h-4 w-4" />
+          <span className="font-mono-flight text-[11px] uppercase tracking-[0.2em]">{ctaLabel}</span>
+        </Button>
       </motion.div>
     </motion.section>
   );

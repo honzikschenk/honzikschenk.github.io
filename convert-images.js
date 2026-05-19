@@ -1,10 +1,6 @@
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const inputDir = path.join(process.cwd(), 'public');
 const outputDir = path.join(process.cwd(), 'public');
@@ -26,7 +22,7 @@ async function getFileSizeInMB(filePath) {
   try {
     const stats = fs.statSync(filePath);
     return (stats.size / 1024 / 1024).toFixed(2);
-  } catch (error) {
+  } catch {
     return 0;
   }
 }
@@ -89,7 +85,8 @@ async function convertToWebP() {
             console.log(`✅ ${file} -> ${path.basename(outputPath)} (${originalSize}MB -> ${webpSize}MB, ${savings}% smaller)`);
           }
         } catch (error) {
-          console.error(`❌ Failed to convert ${file}:`, error.message);
+          const message = error instanceof Error ? error.message : String(error);
+          console.error(`❌ Failed to convert ${file}:`, message);
         }
       }
     }

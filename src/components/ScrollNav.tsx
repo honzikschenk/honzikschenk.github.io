@@ -1,71 +1,46 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
-
-interface Section {
-  id: string;
-  label: string;
-  color?: string;
-}
+import { navigationSections, type NavSection } from "@/content/siteContent";
 
 interface ScrollNavProps {
-  sections?: Section[];
+  sections?: NavSection[];
   activeSection?: string;
   onSectionClick?: (sectionId: string) => void;
 }
 
 const ScrollNav = ({
-  sections = [
-    { id: "hero", label: "Home", color: "bg-blue-500" },
-    { id: "about", label: "About", color: "bg-purple-500" },
-    { id: "projects", label: "Projects", color: "bg-green-500" },
-    { id: "experience", label: "Work Experience", color: "bg-red-500" },
-    { id: "contact", label: "Contact", color: "bg-orange-500" },
-  ],
+  sections = navigationSections,
   activeSection = "hero",
   onSectionClick = () => {},
 }: ScrollNavProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 bg-background/95 backdrop-blur-sm rounded-full py-4 px-2 shadow-lg border border-border/50"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45 }}
+      className="fixed right-3 top-1/2 z-50 -translate-y-1/2"
     >
-      <TooltipProvider delayDuration={0}>
-        <nav className="flex flex-col gap-4">
-          {sections.map((section) => (
-            <Tooltip key={section.id}>
-              <TooltipTrigger asChild>
-                <motion.button
-                  onClick={() => onSectionClick(section.id)}
-                  className="relative w-3 h-3 rounded-full transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <motion.div
-                    className={`absolute inset-0 rounded-full ${section.color || "bg-primary"} shadow-md`}
-                    animate={{
-                      scale: activeSection === section.id ? 1.5 : 1,
-                      opacity: activeSection === section.id ? 1 : 0.5,
-                    }}
-                    whileHover={{ scale: 1.5 }}
-                    transition={{ duration: 0.1 }}
-                  />
-                </motion.button>
-              </TooltipTrigger>
-              <TooltipContent side="left" className="mr-2 bg-background/95 backdrop-blur-sm border border-border/50 text-foreground text-neutral-800">
-                {section.label}
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </nav>
-      </TooltipProvider>
+      <nav className="sky-glass flex flex-col gap-2 rounded-2xl p-3">
+        {sections.map((section) => {
+          const isActive = activeSection === section.id;
+
+          return (
+            <button
+              type="button"
+              key={section.id}
+              onClick={() => onSectionClick(section.id)}
+              aria-current={isActive ? "page" : undefined}
+              className={`shrink-0 rounded-xl px-3 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors duration-150 min-w-[72px] sm:min-w-[90px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                isActive
+                  ? "bg-primary text-primary-foreground"
+                  : "text-primary/85 hover:bg-primary/15"
+              }`}
+            >
+              {section.label}
+            </button>
+          );
+        })}
+      </nav>
     </motion.div>
   );
 };
