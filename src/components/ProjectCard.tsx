@@ -33,6 +33,7 @@ const ProjectCard = ({
   const isFlightProject = /autonomous|uav|drone|navigation|robot|control/i.test(
     `${title} ${description} ${techStack.map((item) => item.name).join(" ")}`
   );
+  const hasImage = image.trim().length > 0;
   const accentClasses = isFlightProject
     ? {
         pill: "border-primary/35 bg-[#091e38]/85 text-primary",
@@ -48,13 +49,31 @@ const ProjectCard = ({
   return (
     <Card className="sky-glass group w-full overflow-hidden rounded-2xl border-primary/20 shadow-[0_12px_24px_rgba(6,18,34,0.35)] transition-colors duration-200 hover:border-primary/45">
       <div className="relative h-48 overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          decoding="async"
-        />
+        {hasImage ? (
+          <img
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_top,rgba(103,232,249,0.18),transparent_42%),linear-gradient(135deg,rgba(11,37,69,0.96),rgba(2,10,22,1))] px-6 text-center">
+            <div className="space-y-3">
+              {isFlightProject ? (
+                <Plane className="mx-auto h-10 w-10 text-primary/90" />
+              ) : (
+                <SquareStack className="mx-auto h-10 w-10 text-violet-100/90" />
+              )}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.2em] text-slate-200/70">
+                  {isFlightProject ? "Robotics project" : "Software project"}
+                </p>
+                <p className="mt-1 text-sm text-slate-100/85">Preview coming soon</p>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#020a16]/85 via-[#020a16]/20 to-transparent" />
 
         <div className={`absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] ${accentClasses.pill}`}>
