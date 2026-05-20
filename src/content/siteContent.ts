@@ -83,81 +83,168 @@ export const navigationSections: NavSection[] = [
 ];
 
 export const heroContent: HeroContent = {
-  eyebrow: "Robotics and autonomy",
+  eyebrow: "Autonomy, perception, and control",
   name: "Jan \"Honzik\" Schenk",
-  role: "2nd year Software Engineering student @ University of Waterloo",
-  summary: "",
+  role: "Software Engineering student @ University of Waterloo",
+  summary:
+    "",
   image: "/profile.webp",
   imageAlt: "Portrait of Jan Schenk",
   ctaLabel: "About",
 };
 
 export const aboutContent: AboutContent = {
-  eyebrow: "",
-  title: "About me",
+  eyebrow: "Profile",
+  title: "About",
   bio:
-    "I am a software engineering student at the University of Waterloo focused on UAVs, robotics, and autonomous systems. I love working close to hardware and making it feel alive.",
+    "I'm a Software Engineering student at the University of Waterloo working across UAV autonomy, perception, and controls applications. My recent work spans local-space target localization, heavy-lift UAV system integration, and automating hardware systems.",
   details: [
-    { label: "Currently at", value: "University of Waterloo" },
-    { label: "Focus", value: "UAV and robotics autonomy" },
+    {
+      label: "Education",
+      value: "Software Engineering, University of Waterloo (Honours Co-op)",
+    },
+    {
+      label: "Focus",
+      value: "UAV autonomy, GNC, SLAM/VIO, and sensor fusion",
+    },
   ],
 };
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Robotics software",
-    items: ["ROS 2", "MAVLink / Pixhawk", "State Machines", "Mission Planning"],
+    title: "Autonomy and controls",
+    items: [
+      "ROS 2",
+      "UAV Autonomy",
+      "GNC",
+      "PID Tuning",
+      "State-Space Control",
+      "Path Planning",
+    ],
   },
   {
-    title: "Controls and perception",
-    items: ["PID + State Space", "Sensor Fusion", "AprilTag Localization", "OpenCV"],
+    title: "Perception and localization",
+    items: [
+      "SLAM / VIO",
+      "Sensor Fusion",
+      "OpenCV",
+      "Open3D",
+      "DepthAI / OAK-D",
+      "AprilTag",
+    ],
   },
   {
-    title: "Engineering",
-    items: ["C++", "Python", "Java", "CI/CD", "Hardware-in-the-Loop"],
+    title: "Flight and robotics stack",
+    items: [
+      "MAVLink",
+      "PX4",
+      "Ardupilot",
+      "Isaac ROS",
+      "MuJoCo",
+      "Gazebo",
+      "HITL",
+    ],
   },
   {
-    title: "Tools",
-    items: ["Docker", "GitHub Actions", "KiCad", "Telemetry Dashboards"],
+    title: "Systems and tooling",
+    items: [
+      "C++",
+      "Python",
+      "Java",
+      "TypeScript",
+      "CMake",
+      "Docker",
+      "KiCad",
+      "TensorRT",
+      "DeepStream",
+      "GitHub Actions",
+    ],
   },
 ];
 
 export const projectsIntro: SectionIntro = {
-  eyebrow: "",
+  eyebrow: "Selected work",
   title: "Projects",
-  description: "Projects across robotics, autonomy, and software.",
+  description: "Recent work across autonomy, robotics, and software.",
 };
 
 export const projects: ProjectItem[] = [
+  {
+    title: "Autonomous Aerial Target Localization",
+    description:
+      "Real-time UAV perception and mapping pipeline that fuses detections, visual odometry, and SLAM to localize competition targets in local-space environments.",
+    image: "/warg-auto.webp",
+    techStack: [
+      { name: "Python", color: "bg-blue-600" },
+      { name: "SLAM / VIO", color: "bg-emerald-600" },
+      { name: "Open3D", color: "bg-cyan-500" },
+      { name: "DepthAI / OAK-D", color: "bg-amber-500" },
+      { name: "MAVLink", color: "bg-violet-500" },
+    ],
+    demoLink: "",
+    githubLink: "https://github.com/UWARG/Auto-AEAC-2026-Task-1-COMP",
+  },
+  {
+    title: "PloverOS - Split-Compute VLA UAV Prototype",
+    description:
+      "Split-compute VLA UAV prototype that converts operator instructions and scene context into low-latency flight commands across ground and air systems. Wireless-latent is sent from the ground station to the drone, reducing airside platform resource requirements.",
+    image: "/ploveros.webp",
+    techStack: [
+      { name: "C++", color: "bg-blue-600" },
+      { name: "Python", color: "bg-blue-700" },
+      { name: "Multimodal Autonomy", color: "bg-emerald-500" },
+      { name: "TCP Networking", color: "bg-amber-500" },
+      { name: "Control Systems", color: "bg-violet-500" },
+    ],
+    demoLink: "",
+    githubLink: "https://github.com/honzikschenk/PloverOS",
+  },
+  {
+    title: "Drone Audio Classification Model + Web App",
+    description:
+      "Hackathon project pairing a transformer-based drone audio classifier with a React and Flask interface for real-time monitoring.",
+    image: "/audio-class.webp",
+    techStack: [
+      { name: "PyTorch", color: "bg-orange-500" },
+      { name: "Transformer ML", color: "bg-violet-500" },
+      { name: "React", color: "bg-blue-600" },
+      { name: "Flask", color: "bg-emerald-500" },
+      { name: "Audio Features", color: "bg-cyan-500" },
+    ],
+    demoLink: "",
+    githubLink: "https://github.com/AumkarMali/WATheDrone",
+  },
+  {
+    title: "Drone Hardware-in-the-Loop Platform",
+    description:
+      "Physical simulation platform for safe autonomy testing with Pixhawk, Ardupilot, MAVLink, and a custom Python flight guidance and perception stack.",
+    image: "/warg-hitl.webp",
+    techStack: [
+      { name: "HITL", color: "bg-blue-600" },
+      { name: "Python", color: "bg-emerald-500" },
+      { name: "MAVLink", color: "bg-violet-500" },
+      { name: "Ardupilot", color: "bg-amber-500" },
+      { name: "Pixhawk", color: "bg-cyan-500" },
+    ],
+    demoLink: "",
+    githubLink: "",
+  },
   {
     title: "Campus Navigation Vehicle",
     description:
       "Autonomous campus navigator that guides users to classes with on-device planning using Dijkstra's algorithm and localization via AprilTags.",
     image: "/path-maxer.webp",
     techStack: [
-      { name: "Robot OS", color: "bg-blue-600" },
-      { name: "Dijkstra's Algorithm", color: "bg-yellow-500" },
-      { name: "AprilTags", color: "bg-green-500" },
-      { name: "C++", color: "bg-purple-500" },
-      { name: "Bluetooth", color: "bg-blue-500" },
+      { name: "ROS 2", color: "bg-blue-600" },
+      { name: "C++", color: "bg-violet-500" },
+      { name: "Dijkstra's Algorithm", color: "bg-violet-500" },
+      { name: "Raspberry Pi", color: "bg-emerald-500" },
+      { name: "React Native", color: "bg-cyan-500" },
+      { name: "Bluetooth", color: "bg-amber-500" },
     ],
     demoLink: "https://drive.google.com/file/d/1TNJl6DPzvSaDpCO_igs-X81bE8GjgqE4/view?usp=sharing",
     githubLink: "",
   },
-  // {
-  //   title: "UWaterloo Outers Club Website",
-  //   description:
-  //     "University outdoor club website with a rental system, events platform, and member management workflows.",
-  //   image: "/outers-club.webp",
-  //   techStack: [
-  //     { name: "Next.js", color: "bg-green-500" },
-  //     { name: "React", color: "bg-purple-500" },
-  //     { name: "TypeScript", color: "bg-blue-700" },
-  //     { name: "Tailwind CSS", color: "bg-cyan-500" },
-  //   ],
-  //   demoLink: "",
-  //   githubLink: "",
-  // },
   {
     title: "Debug Debacle (3rd Place)",
     description:
@@ -203,8 +290,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: "Personal Portfolio Website",
-    description:
-      "This site, built to present my work in a creative format.",
+    description: "This site, built to present my work in a creative format.",
     image: "/portfolio-site.webp",
     techStack: [
       { name: "React", color: "bg-blue-600" },
@@ -218,35 +304,53 @@ export const projects: ProjectItem[] = [
 ];
 
 export const experienceIntro: SectionIntro = {
-  eyebrow: "",
-  title: "Work and team experience",
-  description: "Roles where I have built software, tested systems, and worked close to hardware.",
+  eyebrow: "Professional and extracurricular activity",
+  title: "Relevant experience",
+  description: "Roles spanning UAV autonomy, controls, validation, and robotics systems integration.",
 };
 
 export const experiences: ExperienceItem[] = [
   {
-    logo: "cowtech.webp",
-    company: "Cowden Technologies, Inc.",
-    position: "Robotics and Autonomous Systems Intern",
-    duration: "May 2025 - Present",
-    description:
-      "Designing and integrating autonomy subsystems for UAV platforms, including ROS-based modules, sensor interfaces, and validation workflows for reliable field operation.",
-    tags: ["UAV", "ROS", "PCB Design", "Pixhawk", "Autonomous Systems"],
-  },
-  {
     logo: "warg.webp",
     company: "Waterloo Aerial Robotics Group",
-    position: "Autonomy Subteam Lead, Project Manager (Simulation / Testing)",
-    duration: "November 2024 - Present",
+    position: "Autonomy Subteam Lead, prev. Project Manager - Simulation / Testing",
+    duration: "Oct 2024 - Present",
     description:
-      "Leading autonomy development on a competition drone focused on fire detection and suppression. Coordinating hardware-in-the-loop simulation and test architecture to reduce field risk.",
-    tags: ["UAV", "OpenCV", "Python", "IR Camera", "Competition"],
+      "Lead autonomy development for a competition drone, fusing SLAM and target detection for fire detection and suppression missions.",
+    tags: ["UAV Autonomy", "SLAM", "YOLO", "DepthAI", "OpenCV"],
+  },
+  {
+    logo: "agricision.webp",
+    company: "Agricision Inc.",
+    position: "UAV Systems Integration Consultant",
+    duration: "Apr 2026 - Present",
+    description:
+      "Support system integration and characterization for an autonomous agriculture UAV, tuning control loops and managing rosbag data-collection.",
+    tags: ["PID", "ROS 2", "Python", "Flight Test", "UAV Systems"],
+  },
+  {
+    logo: "aeroprobe.webp",
+    company: "Aeroprobe",
+    position: "Software Engineering Intern",
+    duration: "Jan 2026 - Apr 2026",
+    description:
+      "Built Python and Octave tooling for air-data computer validation, calibration generation, and RS-232/RS-422 instrumentation automation.",
+    tags: ["Python", "Octave", "PySerial", "Validation", "RS-232 / RS-422"],
+  },
+  {
+    logo: "cowtech.webp",
+    company: "Cowden Technologies",
+    position: "Robotics and Autonomous Systems Intern",
+    duration: "May 2025 - Aug 2025",
+    description:
+      "Built drone docking and perception systems with ROS 2, MuJoCo, TensorRT and DeepStream on Jetsons.",
+    tags: ["ROS 2", "TensorRT", "DeepStream", "Jetson", "KiCad"],
   },
   {
     logo: "atc.webp",
     company: "Appalachian Trail Conservancy",
     position: "Campsite Inventory Technician",
-    duration: "July 2024 - August 2024",
+    duration: "Jul 2024 - Aug 2024",
     description:
       "Worked independently to inventory campsites and complete scientific field assessments with GIS navigation and structured data capture methods.",
     tags: ["GIS", "Field Work", "Data Collection", "Scientific Assessment"],
@@ -255,7 +359,7 @@ export const experiences: ExperienceItem[] = [
     logo: "vt.webp",
     company: "Virginia Tech Computer Science Department",
     position: "Back-End Cybersecurity Intern",
-    duration: "February 2023 - May 2023",
+    duration: "Feb 2023 - May 2023",
     description:
       "Built a smart-grid cybersecurity model linking IoT devices with a full-stack monitoring and control system. Presented at VT ICAT Day and won the People's Choice Award.",
     tags: ["Next.js", "MongoDB", "IoT", "Cybersecurity", "Smart Grid"],
@@ -263,11 +367,11 @@ export const experiences: ExperienceItem[] = [
   {
     logo: "401.webp",
     company: "FIRST Robotics Competition Team 401",
-    position: "Programming Lead, Electrical Lead",
-    duration: "September 2021 - May 2024",
+    position: "Controls Lead, prev. Electrical Lead",
+    duration: "Sep 2021 - May 2024",
     description:
-      "Led a 12-person team building autonomous robotics systems with state-space control, AprilTag localization, and disciplined CI workflows.",
-    tags: ["Java", "Team Leadership", "AprilTag", "CAN Bus", "CI/CD"],
+      "Led a 12-person controls team building autonomous competition robots with Java, state-space control, AprilTag localization, and CAN bus integration.",
+    tags: ["Java", "State-Space", "AprilTag", "CAN Bus", "Leadership"],
   },
 ];
 
@@ -278,13 +382,13 @@ export const contactContent: ContactContent = {
   links: [
     {
       label: "GitHub",
-      href: "https://github.com/honzikschenk",
+      href: "https://www.github.com/honzikschenk",
       icon: "github",
       tone: "primary",
     },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/in/honzik-schenk",
+      href: "https://www.linkedin.com/in/honzik-schenk/",
       icon: "linkedin",
       tone: "primary",
     },

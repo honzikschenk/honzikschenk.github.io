@@ -84,7 +84,7 @@ const ProjectCard = ({
 
       <div className="space-y-4 p-5">
         <h3 className={`text-xl font-bold sm:text-2xl ${accentClasses.title}`}>{title}</h3>
-        <p className="line-clamp-3 text-sm leading-relaxed text-slate-200/80">{description}</p>
+        <p className="text-sm leading-relaxed text-slate-200/80">{description}</p>
 
         <div className="flex flex-wrap gap-2">
           {techStack.map((tech) => (
