@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import HeroSection from "./HeroSection";
 import ProjectsGrid from "./ProjectsGrid";
@@ -21,8 +21,12 @@ import {
 
 const sections = navigationSections;
 
+// The flight explorer is optional, so keep it out of the main bundle until requested.
+const FlightExplorer = lazy(() => import("./flight/FlightExplorer"));
+
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("hero");
+  const [flightOpen, setFlightOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -104,6 +108,7 @@ const HomePage = () => {
         sections={sections}
         activeSection={activeSection}
         onSectionClick={handleSectionClick}
+        onLaunchFlight={() => setFlightOpen(true)}
       />
 
       <motion.main
@@ -116,6 +121,7 @@ const HomePage = () => {
           <HeroSection
             {...heroContent}
             onExploreClick={() => handleSectionClick("about")}
+            onLaunchFlight={() => setFlightOpen(true)}
             scrollProgress={scrollYProgress}
           />
         </section>
@@ -136,6 +142,18 @@ const HomePage = () => {
           <Footnote {...contactContent} />
         </section>
       </motion.main>
+
+      {flightOpen && (
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#04101f]">
+              <p className="hud-label">Preparing for takeoff…</p>
+            </div>
+          }
+        >
+          <FlightExplorer onExit={() => setFlightOpen(false)} />
+        </Suspense>
+      )}
     </div>
   );
 };

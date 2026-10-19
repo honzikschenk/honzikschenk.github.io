@@ -69,7 +69,7 @@ const ProjectCard = ({
                 <p className="text-[11px] uppercase tracking-[0.2em] text-slate-200/70">
                   {isFlightProject ? "Robotics project" : "Software project"}
                 </p>
-                <p className="mt-1 text-sm text-slate-100/85">Preview coming soon</p>
+                <p className="mt-1 text-sm text-slate-100/85">Preview</p>
               </div>
             </div>
           </div>
