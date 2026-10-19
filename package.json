@@ -89,6 +89,11 @@
     "terser": "^5.43.1",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.59.1",
-    "vite": "^7.3.2"
+    "vite": "^7.3.7"
+  },
+  "overrides": {
+    "vite-plugin-pages": {
+      "vite": "$vite"
+    }
   }
 }
