@@ -97,7 +97,7 @@ export const aboutContent: AboutContent = {
   eyebrow: "Profile",
   title: "About",
   bio:
-    "I'm a Software Engineering student at the University of Waterloo working across UAV autonomy, perception, and controls applications. My recent work spans local-space target localization, heavy-lift UAV system integration, and automating hardware systems.",
+    "I'm a Software Engineering student at the University of Waterloo working across UAV autonomy, perception, and controls. I lead the autonomy subteam at the Waterloo Aerial Robotics Group, and my recent work spans GPS-denied target localization, crop-pest geolocation and visual localization on Jetson-based payloads, heavy-lift UAV tuning, and simulation-driven testing.",
   details: [
     {
       label: "Education",
@@ -117,7 +117,9 @@ export const skillGroups: SkillGroup[] = [
       "ROS 2",
       "UAV Autonomy",
       "GNC",
-      "PID Tuning",
+      "Behavior Trees",
+      "State Machines",
+      "Gain Scheduling",
       "State-Space Control",
       "Path Planning",
     ],
@@ -127,37 +129,46 @@ export const skillGroups: SkillGroup[] = [
     items: [
       "SLAM / VIO",
       "Sensor Fusion",
+      "Camera Calibration",
+      "Georeferencing",
+      "Orthomosaic Mapping",
       "OpenCV",
       "Open3D",
       "DepthAI / OAK-D",
       "AprilTag",
+      "PyTorch",
     ],
   },
   {
-    title: "Flight and robotics stack",
+    title: "Flight, robotics, and simulation",
     items: [
-      "MAVLink",
       "PX4",
-      "Ardupilot",
+      "ArduPilot",
+      "MAVLink",
       "Isaac ROS",
-      "MuJoCo",
+      "Jetson",
       "Gazebo",
+      "ArduPilot SITL",
       "HITL",
+      "MuJoCo",
+      "PyBullet",
     ],
   },
   {
     title: "Systems and tooling",
     items: [
       "C++",
+      "C",
       "Python",
       "Java",
       "TypeScript",
-      "CMake",
-      "Docker",
-      "KiCad",
+      "SQL",
+      "Docker / Compose",
+      "pytest",
+      "GitHub Actions",
       "TensorRT",
       "DeepStream",
-      "GitHub Actions",
+      "KiCad",
     ],
   },
 ];
@@ -170,29 +181,30 @@ export const projectsIntro: SectionIntro = {
 
 export const projects: ProjectItem[] = [
   {
-    title: "Autonomous Aerial Target Localization",
+    title: "WARG: Aerial Target Detection and Localization",
     description:
-      "Real-time UAV perception and mapping pipeline that fuses detections, visual odometry, and SLAM to localize competition targets in local-space environments.",
+      "Real-time perception and mapping pipeline for WARG's competition drone that fuses OAK-D detections, VIO pose estimates, and SLAM maps. RANSAC plane segmentation extracts walls and corners so targets are localized relative to building structure in GPS-denied flight.",
     image: "/warg-auto.webp",
     techStack: [
       { name: "Python", color: "bg-blue-600" },
       { name: "SLAM / VIO", color: "bg-emerald-600" },
       { name: "Open3D", color: "bg-cyan-500" },
       { name: "DepthAI / OAK-D", color: "bg-amber-500" },
+      { name: "RANSAC", color: "bg-rose-500" },
       { name: "MAVLink", color: "bg-violet-500" },
     ],
     demoLink: "",
     githubLink: "https://github.com/UWARG/Auto-AEAC-2026-Task-1-COMP",
   },
   {
-    title: "PloverOS - Split-Compute VLA UAV Prototype",
+    title: "PloverOS - Split-Compute Autonomy Framework",
     description:
-      "Split-compute VLA UAV prototype that converts operator instructions and scene context into low-latency flight commands across ground and air systems. Wireless-latent is sent from the ground station to the drone, reducing airside platform resource requirements.",
+      "Split-compute UAV autonomy framework that turns natural-language operator commands into real-time velocity setpoints. The ground station embeds the command and a scene image into a 512-dim latent, which drives a 20 Hz C++ airside control loop over a shared cross-language TCP protocol.",
     image: "/ploveros.webp",
     techStack: [
       { name: "C++", color: "bg-blue-600" },
       { name: "Python", color: "bg-blue-700" },
-      { name: "Multimodal Autonomy", color: "bg-emerald-500" },
+      { name: "ONNX Runtime", color: "bg-emerald-500" },
       { name: "TCP Networking", color: "bg-amber-500" },
       { name: "Control Systems", color: "bg-violet-500" },
     ],
@@ -202,7 +214,7 @@ export const projects: ProjectItem[] = [
   {
     title: "Drone Audio Classification Model + Web App",
     description:
-      "Hackathon project pairing a transformer-based drone audio classifier with a React and Flask interface for real-time monitoring.",
+      "3rd place at the Ottawa Defence Tech Hackathon. A custom transformer fusing mel spectrograms, constant-Q transforms, and harmonic features classifies drone audio at 80% accuracy, with a React and Flask app visualizing waveforms, spectrograms, and model confidence in real time.",
     image: "/audio-class.webp",
     techStack: [
       { name: "PyTorch", color: "bg-orange-500" },
@@ -215,16 +227,47 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/AumkarMali/WATheDrone",
   },
   {
-    title: "Drone Hardware-in-the-Loop Platform",
+    title: "Drone Hardware-in-the-Loop Platform (WARG)",
     description:
-      "Physical simulation platform for safe autonomy testing with Pixhawk, Ardupilot, MAVLink, and a custom Python flight guidance and perception stack.",
+      "HITL simulation framework for safe autonomy testing that emulates GPS and camera data over MAVLink and TCP into a real Pixhawk running ArduPilot, integrated with the team's custom Python autonomy flight stack.",
     image: "/warg-hitl.webp",
     techStack: [
       { name: "HITL", color: "bg-blue-600" },
       { name: "Python", color: "bg-emerald-500" },
       { name: "MAVLink", color: "bg-violet-500" },
-      { name: "Ardupilot", color: "bg-amber-500" },
+      { name: "ArduPilot", color: "bg-amber-500" },
       { name: "Pixhawk", color: "bg-cyan-500" },
+    ],
+    demoLink: "",
+    githubLink: "",
+  },
+  {
+    title: "Autonomous Aerial Survey Stack",
+    description:
+      "Containerized ROS 2 stack where a behavior-tree mission engine flies surveys through MAVROS and ArduPilot, with a fleet protocol that allocates tasks by dispatching the closest available UAV to map the survey area.",
+    image: "",
+    techStack: [
+      { name: "ROS 2", color: "bg-blue-600" },
+      { name: "MAVROS", color: "bg-violet-500" },
+      { name: "Behavior Trees", color: "bg-emerald-500" },
+      { name: "ArduPilot", color: "bg-amber-500" },
+      { name: "Gazebo", color: "bg-orange-500" },
+      { name: "Docker", color: "bg-cyan-500" },
+    ],
+    demoLink: "",
+    githubLink: "",
+  },
+  {
+    title: "City Drone Pathfinder",
+    description:
+      "Visibility-graph pathfinding engine for UAVs that runs A* over a graph built from OSM building outlines. Geographic data is projected into UTM for metric building buffers, and edges that clip buildings are rejected with segment-intersection tests.",
+    image: "/city-pathfinder.webp",
+    techStack: [
+      { name: "Python", color: "bg-blue-600" },
+      { name: "A*", color: "bg-emerald-500" },
+      { name: "Visibility Graphs", color: "bg-violet-500" },
+      { name: "UTM", color: "bg-amber-500" },
+      { name: "OpenStreetMap", color: "bg-cyan-500" },
     ],
     demoLink: "",
     githubLink: "",
@@ -316,17 +359,26 @@ export const experiences: ExperienceItem[] = [
     position: "Autonomy Subteam Lead, prev. Project Manager - Simulation / Testing",
     duration: "Oct 2024 - Present",
     description:
-      "Lead autonomy development for a competition drone, fusing SLAM and target detection for fire detection and suppression missions.",
-    tags: ["UAV Autonomy", "SLAM", "YOLO", "DepthAI", "OpenCV"],
+      "Lead a 40-person autonomy subteam, fusing SLAM and target detection for drone and target localization in GPS-denied settings. Architected a behavior-tree-driven ROS 2 autonomy stack with OAK-D perception and mapping, and established HITL testing that injects GPS and camera data into a Pixhawk running ArduPilot.",
+    tags: ["UAV Autonomy", "ROS 2", "Behavior Trees", "SLAM", "YOLO", "DepthAI", "HITL"],
   },
   {
     logo: "agricision.webp",
     company: "Agricision Inc.",
-    position: "UAV Systems Integration Consultant",
-    duration: "Apr 2026 - Present",
+    position: "UAV Autonomy & Robotics Engineering Intern",
+    duration: "Sep 2026 - Present",
     description:
-      "Support system integration and characterization for an autonomous agriculture UAV, tuning control loops and managing rosbag data-collection.",
-    tags: ["PID", "ROS 2", "Python", "Flight Test", "UAV Systems"],
+      "Architected a C++ ROS 2 payload on a Jetson that detects and geolocates crop pests at centimeter accuracy. Developing a georeferenced landmark atlas for visual localization, a PX4 SITL simulator with a rendered camera to score the pipeline, and live orthomosaic mapping validated against satellite imagery.",
+    tags: ["C++", "ROS 2", "Jetson", "PX4 SITL", "Georeferencing", "Orthomosaics"],
+  },
+  {
+    logo: "agricision.webp",
+    company: "Agricision Inc.",
+    position: "UAV Systems Integration Consultant (Part-time)",
+    duration: "Apr 2026 - Sep 2026",
+    description:
+      "Tuned a 50 kg PX4 UAV for flight readiness with gain scheduling and FFT-based vibration analysis, and built Python tooling for automated rosbag fetching and post-flight data analysis.",
+    tags: ["PX4", "Gain Scheduling", "FFT", "Python", "rosbag"],
   },
   {
     logo: "aeroprobe.webp",
@@ -334,7 +386,7 @@ export const experiences: ExperienceItem[] = [
     position: "Software Engineering Intern",
     duration: "Jan 2026 - Apr 2026",
     description:
-      "Built Python and Octave tooling for air-data computer validation, calibration generation, and RS-232/RS-422 instrumentation automation.",
+      "Built a Python validation framework for an air data computer, automated RS-232/RS-422 device workflows with PySerial (cutting manual steps by ~85%), and developed Octave tooling to generate optimal wind-tunnel probe-positioning patterns.",
     tags: ["Python", "Octave", "PySerial", "Validation", "RS-232 / RS-422"],
   },
   {
@@ -343,8 +395,8 @@ export const experiences: ExperienceItem[] = [
     position: "Robotics and Autonomous Systems Intern",
     duration: "May 2025 - Aug 2025",
     description:
-      "Built drone docking and perception systems with ROS 2, MuJoCo, TensorRT and DeepStream on Jetsons.",
-    tags: ["ROS 2", "TensorRT", "DeepStream", "Jetson", "KiCad"],
+      "Developed a drone docking station with closed-chain inverse kinematics in ROS 2 and MuJoCo, with state estimation, Arduino serial control, and AprilTag localization for precise landing. Deployed TensorRT, DeepStream, and Docker detection pipelines on NVIDIA Jetson.",
+    tags: ["ROS 2", "MuJoCo", "AprilTag", "TensorRT", "DeepStream", "Jetson"],
   },
   {
     logo: "atc.webp",
