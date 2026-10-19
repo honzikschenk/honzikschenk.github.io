@@ -242,22 +242,6 @@ export const projects: ProjectItem[] = [
     githubLink: "",
   },
   {
-    title: "Autonomous Aerial Survey Stack",
-    description:
-      "Containerized ROS 2 stack where a behavior-tree mission engine flies surveys through MAVROS and ArduPilot, with a fleet protocol that allocates tasks by dispatching the closest available UAV to map the survey area.",
-    image: "",
-    techStack: [
-      { name: "ROS 2", color: "bg-blue-600" },
-      { name: "MAVROS", color: "bg-violet-500" },
-      { name: "Behavior Trees", color: "bg-emerald-500" },
-      { name: "ArduPilot", color: "bg-amber-500" },
-      { name: "Gazebo", color: "bg-orange-500" },
-      { name: "Docker", color: "bg-cyan-500" },
-    ],
-    demoLink: "",
-    githubLink: "",
-  },
-  {
     title: "City Drone Pathfinder",
     description:
       "Visibility-graph pathfinding engine for UAVs that runs A* over a graph built from OSM building outlines. Geographic data is projected into UTM for metric building buffers, and edges that clip buildings are rejected with segment-intersection tests.",

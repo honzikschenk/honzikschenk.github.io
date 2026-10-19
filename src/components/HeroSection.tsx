@@ -1,10 +1,11 @@
 import { motion, MotionValue, useMotionValue, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Plane } from "lucide-react";
 import type { HeroContent } from "@/content/siteContent";
 
 interface HeroSectionProps extends HeroContent {
   onExploreClick?: () => void;
+  onLaunchFlight?: () => void;
   scrollProgress?: MotionValue<number>;
 }
 
@@ -17,6 +18,7 @@ const HeroSection = ({
   imageAlt,
   ctaLabel,
   onExploreClick,
+  onLaunchFlight,
   scrollProgress,
 }: HeroSectionProps) => {
   const fallbackProgress = useMotionValue(0);
@@ -110,7 +112,7 @@ const HeroSection = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2"
+        className="absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2"
       >
         <Button
           type="button"
@@ -121,6 +123,17 @@ const HeroSection = ({
           <ArrowDown className="mr-2 h-4 w-4" />
           <span className="font-mono-flight text-[11px] uppercase tracking-[0.2em]">{ctaLabel}</span>
         </Button>
+        {onLaunchFlight && (
+          <Button
+            type="button"
+            onClick={onLaunchFlight}
+            variant="ghost"
+            className="h-auto whitespace-nowrap rounded-full border border-accent/40 bg-[#06172d]/75 px-4 py-2 text-accent hover:bg-[#2a2210] hover:text-accent"
+          >
+            <Plane className="mr-2 h-4 w-4" />
+            <span className="font-mono-flight text-[11px] uppercase tracking-[0.2em]">Flight mode</span>
+          </Button>
+        )}
       </motion.div>
     </motion.section>
   );
