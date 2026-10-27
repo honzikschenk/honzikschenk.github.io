@@ -126,7 +126,7 @@ const HomePage = () => {
         </section>
 
         <section id="about" className="relative min-h-svh scroll-mt-14 nav:scroll-mt-0">
-          <AboutSection {...aboutContent} skillGroups={skillGroups} />
+          <AboutSection {...aboutContent} skillGroups={skillGroups} links={contactContent.links} />
         </section>
 
         <section id="projects" className="relative min-h-svh scroll-mt-14 nav:scroll-mt-0">

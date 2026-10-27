@@ -2,11 +2,21 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
-import type { AboutContent, SkillGroup } from "@/content/siteContent";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Globe, Mail } from "lucide-react";
+import type { AboutContent, ContactLink, SkillGroup } from "@/content/siteContent";
 
 interface AboutSectionProps extends AboutContent {
   skillGroups: SkillGroup[];
+  links?: ContactLink[];
 }
+
+const linkIcons: Record<ContactLink["icon"], React.ElementType> = {
+  github: FaGithub,
+  linkedin: FaLinkedin,
+  mail: Mail,
+  globe: Globe,
+};
 
 const AboutSection = ({
   eyebrow,
@@ -14,6 +24,7 @@ const AboutSection = ({
   bio,
   details,
   skillGroups,
+  links = [],
 }: AboutSectionProps) => {
   const skillToneClasses = [
     "border-blue-400/25 bg-blue-500/10 text-blue-100",
@@ -47,6 +58,27 @@ const AboutSection = ({
           >
             <Card className="sky-glass rounded-3xl border-primary/20 p-6">
               <p className="text-sm leading-relaxed text-slate-100/90 sm:text-base">{bio}</p>
+
+              {links.length > 0 && (
+                <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+                  {links.map((link) => {
+                    const Icon = linkIcons[link.icon];
+
+                    return (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-slate-300/70 transition-colors hover:text-primary sm:text-sm"
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                        {link.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
 
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {details.map((detail) => (
