@@ -51,11 +51,11 @@ const HeroSection = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative flex min-h-screen w-full items-center overflow-hidden px-4 pb-16 pt-24 sm:px-8"
+      className="relative flex min-h-svh w-full flex-col justify-center overflow-hidden px-4 pb-10 pt-24 sm:px-8 sm:pb-20"
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_360px] lg:gap-14">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-[1.1fr_360px] lg:gap-14">
         <motion.div
-          className="space-y-7"
+          className="space-y-5 sm:space-y-7"
           style={{ y: headingY, opacity: headingOpacity }}
         >
           <div className="inline-flex items-center rounded-full border border-primary/30 bg-[#09233f]/80 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-primary/90 backdrop-blur-md">
@@ -65,7 +65,7 @@ const HeroSection = ({
           <div className="space-y-3">
             <h1 className="max-w-3xl text-4xl font-bold leading-[1.05] sm:text-5xl md:text-6xl xl:text-7xl">
               {name}
-              <span className="mt-2 block bg-gradient-to-r from-primary via-sky-200 to-amber-200 bg-clip-text text-transparent sm:text-[0.42em] sm:leading-tight">
+              <span className="mt-2 block bg-gradient-to-r from-primary via-sky-200 to-amber-200 bg-clip-text text-[0.6em] leading-tight text-transparent sm:text-[0.42em]">
                 {role}
               </span>
             </h1>
@@ -77,7 +77,7 @@ const HeroSection = ({
         </motion.div>
 
         <motion.div
-          className="relative mx-auto w-full max-w-[320px] sm:max-w-[360px] lg:ml-auto"
+          className="relative mx-auto w-full max-w-[220px] min-[400px]:max-w-[260px] sm:max-w-[360px] lg:ml-auto"
           style={{ y: imageY, x: imageX }}
           initial={{ opacity: 0, x: 18 }}
           animate={{ opacity: 1, x: 0 }}
@@ -112,7 +112,7 @@ const HeroSection = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
-        className="absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2"
+        className="relative mt-10 flex flex-wrap items-center justify-center gap-2 sm:absolute sm:bottom-5 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:flex-nowrap"
       >
         <Button
           type="button"

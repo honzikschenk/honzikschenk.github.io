@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        // Width at which the right-edge section rail clears the max-w-6xl content column.
+        nav: "1360px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

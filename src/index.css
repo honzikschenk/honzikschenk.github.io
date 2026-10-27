@@ -54,6 +54,7 @@ html {
 
   body {
     @apply bg-background text-foreground antialiased;
+    -webkit-tap-highlight-color: transparent;
     font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
     background-image:
       radial-gradient(120% 80% at 50% -12%, rgba(114, 198, 255, 0.24), transparent 62%),

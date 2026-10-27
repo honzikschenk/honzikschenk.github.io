@@ -37,25 +37,24 @@ const HomePage = () => {
     let ticking = false;
 
     const updateActiveSection = () => {
+      // The active section is the last one whose top has crossed this line; comparing
+      // section centers breaks down for tall sections, which are common on mobile.
       const targetY = window.innerHeight * 0.45;
       let closestSection = sections[0]?.id ?? "hero";
-      let closestDistance = Number.POSITIVE_INFINITY;
 
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
-        if (!element) {
-          return;
-        }
-
-        const rect = element.getBoundingClientRect();
-        const sectionCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(sectionCenter - targetY);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
+        if (element && element.getBoundingClientRect().top <= targetY) {
           closestSection = section.id;
         }
       });
+
+      // The last section may be too short to ever reach the line, so pin it at the page bottom.
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom && sections.length > 0) {
+        closestSection = sections[sections.length - 1].id;
+      }
 
       setActiveSection((current) =>
         current === closestSection ? current : closestSection
@@ -117,7 +116,7 @@ const HomePage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <section id="hero" className="min-h-screen">
+        <section id="hero" className="min-h-svh">
           <HeroSection
             {...heroContent}
             onExploreClick={() => handleSectionClick("about")}
@@ -126,19 +125,19 @@ const HomePage = () => {
           />
         </section>
 
-        <section id="about" className="relative min-h-screen">
+        <section id="about" className="relative min-h-svh scroll-mt-14 nav:scroll-mt-0">
           <AboutSection {...aboutContent} skillGroups={skillGroups} />
         </section>
 
-        <section id="projects" className="relative min-h-screen">
+        <section id="projects" className="relative min-h-svh scroll-mt-14 nav:scroll-mt-0">
           <ProjectsGrid {...projectsIntro} projects={projects} />
         </section>
 
-        <section id="experience" className="relative min-h-screen">
+        <section id="experience" className="relative min-h-svh scroll-mt-14 nav:scroll-mt-0">
           <Experience {...experienceIntro} experiences={experiences} />
         </section>
 
-        <section id="contact" className="relative min-h-screen">
+        <section id="contact" className="relative min-h-svh scroll-mt-14 nav:scroll-mt-0">
           <Footnote {...contactContent} />
         </section>
       </motion.main>
