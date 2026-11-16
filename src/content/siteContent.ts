@@ -97,7 +97,7 @@ export const aboutContent: AboutContent = {
   eyebrow: "Profile",
   title: "About",
   bio:
-    "I'm a Software Engineering student at the University of Waterloo working across UAV autonomy, perception, and controls. I lead the autonomy subteam at the Waterloo Aerial Robotics Group, and my recent work spans GPS-denied target localization, crop-pest geolocation and visual localization on Jetson-based payloads, heavy-lift UAV tuning, and simulation-driven testing.",
+    "I'm a Software Engineering student at the University of Waterloo working across UAV autonomy, perception, and controls. I lead the autonomy subteam at the Waterloo Aerial Robotics Group, and my recent work spans GPS-denied target localization, crop-pest geolocation and visual localization on Jetson-based payloads, heavy-lift UAV tuning, fixed-wing guidance and control, and simulation-driven testing.",
   details: [
     {
       label: "Education",
@@ -180,6 +180,22 @@ export const projectsIntro: SectionIntro = {
 };
 
 export const projects: ProjectItem[] = [
+  {
+    title: "Acessna: Cessna 172 Waypoint and Approach Guidance",
+    description:
+      "C++ guidance, navigation, and control stack for a Cessna 172 in JSBSim. L1 nonlinear guidance flies commanded waypoints with crosswind correction, and a mode manager drives cascaded TECS, attitude, and body-rate loops to capture and track the glideslope. A multithreaded Monte Carlo harness ran 500 dispersed approaches: 100% reached decision height with 1.2 m p95 lateral error.",
+    image: "",
+    techStack: [
+      { name: "C++", color: "bg-blue-600" },
+      { name: "JSBSim", color: "bg-emerald-500" },
+      { name: "L1 Guidance", color: "bg-violet-500" },
+      { name: "TECS", color: "bg-amber-500" },
+      { name: "Monte Carlo", color: "bg-cyan-500" },
+      { name: "GoogleTest", color: "bg-rose-500" },
+    ],
+    demoLink: "",
+    githubLink: "https://github.com/honzikschenk/Acessna",
+  },
   {
     title: "WARG: Aerial Target Detection and Localization",
     description:
@@ -343,8 +359,8 @@ export const experiences: ExperienceItem[] = [
     position: "Autonomy Subteam Lead, prev. Project Manager - Simulation / Testing",
     duration: "Oct 2024 - Present",
     description:
-      "Lead a 40-person autonomy subteam, fusing SLAM and target detection for drone and target localization in GPS-denied settings. Architected a behavior-tree-driven ROS 2 autonomy stack with OAK-D perception and mapping, and established HITL testing that injects GPS and camera data into a Pixhawk running ArduPilot.",
-    tags: ["UAV Autonomy", "ROS 2", "Behavior Trees", "SLAM", "YOLO", "DepthAI", "HITL"],
+      "Lead a 40-person autonomy subteam driving autonomous flight and target detection, fusing SLAM with YOLO, DepthAI, and OpenCV detections for drone and target localization in GPS-denied settings. Designed a position controller that avoids moving traffic and follows smooth spline paths, am architecting a behavior-tree-driven ROS 2 autonomy stack with OAK-D perception and mapping, and established HITL testing that injects GPS and camera data into a Pixhawk running ArduPilot.",
+    tags: ["UAV Autonomy", "ROS 2", "Behavior Trees", "Path Planning", "SLAM", "YOLO", "DepthAI", "HITL"],
   },
   {
     logo: "agricision.webp",
@@ -352,8 +368,8 @@ export const experiences: ExperienceItem[] = [
     position: "UAV Autonomy & Robotics Engineering Intern",
     duration: "Sep 2026 - Present",
     description:
-      "Architected a C++ ROS 2 payload on a Jetson that detects and geolocates crop pests at centimeter accuracy. Developing a georeferenced landmark atlas for visual localization, a PX4 SITL simulator with a rendered camera to score the pipeline, and live orthomosaic mapping validated against satellite imagery.",
-    tags: ["C++", "ROS 2", "Jetson", "PX4 SITL", "Georeferencing", "Orthomosaics"],
+      "Architected a C++ ROS 2 Jetson pipeline that geolocates crop pests and maps terrain at decimeter accuracy. Developing a visual localizer that stores ground features and fuses them with GPS and attitude, cutting orientation error by 35%. Built a PX4 SITL harness with aerial imagery for validation (0.25-0.47 m median error) and live orthomosaic mapping and stitching for real-time field tracking and crop health assessment.",
+    tags: ["C++", "ROS 2", "Jetson", "Visual Localization", "PX4 SITL", "Georeferencing", "Orthomosaics"],
   },
   {
     logo: "agricision.webp",
